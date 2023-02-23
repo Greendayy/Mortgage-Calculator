@@ -1,4 +1,23 @@
-.calcBotton{
+.main{
+  height: 100vh;
+  width: 100%;
+  padding-bottom: 145.6px;
+  padding-left: 29.1199px;
+  padding-right: 29.1199px;
+  padding-top: 0px;
+}
+.calcButton{
   display: block;
   background-color: #23c993;
+  font-size: 28px;
+  color:white;
+  width: 95%;
+  position:absolute;
+  height: 81.5938px;
+  border-radius: 0.08533rem;
+  text-align: center;
+  margin-bottom: 13.0559px;
+  margin-left: 15.2969px;
+  margin-right: 15.2969px;
+  margin-top: 13.0559;
 }

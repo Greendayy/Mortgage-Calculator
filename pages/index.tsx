@@ -15,14 +15,15 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          <h1 className="text-3xl font-bold underline">计算方式</h1>
+          <h1 className="text-3xl font-bold">计算方式</h1>
         </div>
 
         <div className={styles.description}>
-          <h1 className="text-3xl font-bold underline">贷款方式</h1>
+          <h1 className="text-3xl font-bold">贷款方式</h1>
         </div>
       </main>
-      <button className="bg-blue text-white block ">开始计算</button>
+
+      <button className={styles.calcButton}>开始计算</button>
     </>
   );
 }

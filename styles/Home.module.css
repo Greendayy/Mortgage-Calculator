@@ -1,3 +1,4 @@
+
 .main{
   height: 100vh;
   width: 100%;
@@ -11,13 +12,11 @@
   background-color: #23c993;
   font-size: 28px;
   color:white;
-  width: 95%;
+  width: 100%;
   position:absolute;
-  height: 81.5938px;
-  border-radius: 0.08533rem;
+  height: 94.5938px;
+  border-radius: 0.2rem;
   text-align: center;
-  margin-bottom: 13.0559px;
-  margin-left: 15.2969px;
-  margin-right: 15.2969px;
-  margin-top: 13.0559;
+  margin-bottom: 0px;
+  border: white solid 13px;
 }

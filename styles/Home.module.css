@@ -1,8 +1,7 @@
-
 .main{
-  height: 100vh;
+  height: 88vh;
   width: 100%;
-  padding-bottom: 145.6px;
+  padding-bottom: 20px;
   padding-left: 29.1199px;
   padding-right: 29.1199px;
   padding-top: 0px;
@@ -13,10 +12,70 @@
   font-size: 28px;
   color:white;
   width: 100%;
-  position:absolute;
+  position:fixed;
+  margin-bottom: 0px;
   height: 94.5938px;
   border-radius: 0.2rem;
   text-align: center;
-  margin-bottom: 0px;
   border: white solid 13px;
 }
+.tab{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 42.6001px;
+  margin-bottom: 25.56px;
+
+}
+.tabTittle{
+  font-size: 34px;
+  font-weight: 450;
+}
+.tabButton{
+  display: grid row;
+  direction: reverse;
+  font-size: 24px;
+  font-weight: 450;
+}
+.tabButton1
+{
+  margin-right: 25px;
+  color: #1fb081;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 4px;
+}
+.form{
+  font-size: 27px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 118.59px;
+  width: 100%;
+  padding: 37.4881px 0px;
+}
+.formMain{
+  display: grid;
+}
+
+.unit{
+  color:#979b9e;;
+}
+
+.hr{    
+
+  height: 1PX;
+  color: #e7ebee;
+}
+.tabButton3
+{
+  margin-right: 25px;
+  color: #1fb081;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 4px;
+}
+.tabButton4
+{
+  margin-right: 25px;}

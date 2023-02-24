@@ -24,6 +24,7 @@ export default function Home() {
             <label className={styles.label} htmlFor="name">
               贷款金额{" "}
             </label>
+              <div className={styles.input}>
             <input
               className={styles.input}
               type="num"
@@ -33,6 +34,7 @@ export default function Home() {
               required
             />
             <span className={styles.unit}>万</span>
+            </div>
           </div>
         </form>
         <hr className={styles.hr} />
@@ -50,6 +52,7 @@ export default function Home() {
               <label className={styles.label} htmlFor="name">
                 商贷年限{" "}
               </label>
+              <div className={styles.input}>
               <input
                 className={styles.input}
                 type="num"
@@ -59,12 +62,14 @@ export default function Home() {
                 placeholder="30年"
               />
               <span className={styles.unit}>></span>
+              </div>
             </div>
             <hr className={styles.hr} />
             <div className={styles.form}>
               <label className={styles.label} htmlFor="name">
                 利率方式{" "}
               </label>
+              <div className={styles.input}>
               <input
                 className={styles.input}
                 type="num"
@@ -74,12 +79,14 @@ export default function Home() {
                 defaultValue="使用最新LPR"
               />
               <span className={styles.unit}>></span>
+              </div>
             </div>
             <hr className={styles.hr} />
             <div className={styles.form}>
               <label className={styles.label} htmlFor="name">
-                L P R{" "}
+                LPR{" "}
               </label>
+              <div className={styles.input}>
               <input
                 className={styles.input}
                 type="num"
@@ -89,12 +96,14 @@ export default function Home() {
                 defaultValue={4.65}
               />
               <span className={styles.unit}>%</span>
+              </div>
             </div>
             <hr className={styles.hr} />
             <div className={styles.form}>
               <label className={styles.label} htmlFor="name">
-                基 点{" "}
+                基点{" "}
               </label>
+              <div className={styles.input}>
               <input
                 className={styles.input}
                 type="num"
@@ -104,12 +113,14 @@ export default function Home() {
                 defaultValue={0}
               />
               <span className={styles.unit}>BP(‱)</span>
+              </div>
             </div>
             <hr className={styles.hr} />
             <div className={styles.form}>
               <label className={styles.label} htmlFor="name">
                 商贷利率{" "}
               </label>
+              <div className={styles.input}>
               <input
                 className={styles.input}
                 type="num"
@@ -119,6 +130,7 @@ export default function Home() {
                 defaultValue=""
               />
               <span>4.65%</span>
+              </div>
             </div>
             <hr className={styles.hr} />
             <div className={styles.form}></div>

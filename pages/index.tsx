@@ -85,7 +85,10 @@ export default function Home() {
             <div className={styles.form}>
               <label className={styles.label} htmlFor="name">
                 LPR{" "}
+                <img className={styles.img} src="question.svg" />
               </label>
+              
+              
               <div className={styles.input}>
               <input
                 className={styles.input}
@@ -102,6 +105,7 @@ export default function Home() {
             <div className={styles.form}>
               <label className={styles.label} htmlFor="name">
                 基点{" "}
+                <img className={styles.img} src="question.svg" />
               </label>
               <div className={styles.input}>
               <input

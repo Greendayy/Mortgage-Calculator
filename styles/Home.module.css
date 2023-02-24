@@ -1,5 +1,5 @@
 .main{
-  height: 88vh;
+  height: 83vh;
   width: 100%;
   padding-bottom: 20px;
   padding-left: 29.1199px;
@@ -14,7 +14,7 @@
   width: 100%;
   position:fixed;
   margin-bottom: 0px;
-  height: 94.5938px;
+  height: 98px;
   border-radius: 0.2rem;
   text-align: center;
   border: white solid 13px;
@@ -65,11 +65,10 @@
 }
 
 .unit{
-  color:#979b9e;;
+  color:#979b9e;
 }
 
 .hr{    
-
   height: 1PX;
   color: #e7ebee;
 }
@@ -84,3 +83,7 @@
 .tabButton4
 {
   margin-right: 25px;}
+.img{
+  display:inline-block;
+  size: 16px*16px;
+}

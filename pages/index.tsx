@@ -5,13 +5,14 @@ import styles from "../styles/Home.module.css";
 
 export default function Home() {
   return (
-    <>
+    <div>
       <Head>
         <title>房贷计算器</title>
         <meta name="description" content="calc demo" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+{/* 计算方式·表头 */}
         <nav className={styles.tab}>
           <h1 className={styles.tabTittle}>计算方式</h1>
           <div className={styles.tabButton}>
@@ -19,6 +20,7 @@ export default function Home() {
             <button className={styles.tabButton2}>按房屋总价</button>
           </div>
         </nav>
+{/* 按贷款总额·表单 */}
         <form action="" method="get">
           <div className={styles.form}>
             <label className={styles.label} htmlFor="name">
@@ -38,16 +40,64 @@ export default function Home() {
           </div>
         </form>
         <hr className={styles.hr} />
+{/* 贷款方式·表头 */}
         <nav className={styles.tab}>
-          <h1 className={styles.tabTittle}>计算方式</h1>
+          <h1 className={styles.tabTittle}>贷款方式</h1>
           <div className={styles.tabButton}>
             <button className={styles.tabButton3}>组合贷</button>
             <button className={styles.tabButton4}>商业贷</button>
             <button className={styles.tabButton5}>公积金贷</button>
           </div>
         </nav>
+{/* 组合贷·表单 */}
         <div className={styles.formMain}>
           <form action="" method="get">
+          <div className={styles.form}>
+              <label className={styles.label} htmlFor="name">
+                公积金金额{" "}
+              </label>
+              <div className={styles.input}>
+              <input
+                className={styles.input}
+                type="num"
+                name="gjjje"
+                id="gjjje"
+                defaultValue={0}
+                placeholder="0"
+              />
+              <span className={styles.unit}>万</span>
+              </div>
+            </div><div className={styles.form}>
+              <label className={styles.label} htmlFor="name">
+                公积金年限{" "}
+              </label>
+              <div className={styles.input}>
+              <input
+                className={styles.input}
+                type="num"
+                name="gjjnx"
+                id="gjjnx"
+                defaultValue="30年"
+                placeholder="30年"
+              />
+              <span className={styles.unit}>></span>
+              </div>
+            </div><div className={styles.form}>
+              <label className={styles.label} htmlFor="name">
+                公积金利率{" "}
+              </label>
+              <div className={styles.input}>
+              <input
+                className={styles.input}
+                type="text"
+                name="gjjlv"
+                id="gjjlv"
+                defaultValue="3.25%(最新基准利率1倍)"
+                placeholder="3.25%(最新基准利率1倍)"
+              />
+              <span className={styles.unit}>></span>
+              </div>
+            </div>
             <div className={styles.form}>
               <label className={styles.label} htmlFor="name">
                 商贷年限{" "}
@@ -142,6 +192,6 @@ export default function Home() {
         </div>
       </main>
       <button className={styles.calcButton}>开始计算</button>
-    </>
+    </div>
   );
 }

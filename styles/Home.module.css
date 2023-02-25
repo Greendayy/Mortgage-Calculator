@@ -50,13 +50,13 @@
   font-weight: 400;
   display: grid;
   grid-template-columns: 3fr 7fr;
-  
   align-items: center;
   height: 118.59px;
   width: 100%;
   padding: 37.4881px 0px;
 }
 .input{
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }

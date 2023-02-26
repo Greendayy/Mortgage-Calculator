@@ -1,5 +1,5 @@
 .main{
-  height: 83vh;
+  height: 87vh;
   width: 100%;
   padding-bottom: 20px;
   padding-left: 29.1199px;
@@ -20,33 +20,28 @@
   border: white solid 13px;
 }
 .tab{
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 3fr 7fr;
   align-items: center;
   padding-top: 42.6001px;
   margin-bottom: 25.56px;
 
 }
 .tabTittle{
+  display: flex;
   font-size: 34px;
   font-weight: 450;
 }
 .tabButton{
-  display: grid row;
-  direction: reverse;
-  font-size: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  font-size: 25px;
   font-weight: 450;
 }
-.tabButton1
-{
-  margin-right: 25px;
-  color: #1fb081;
-  text-decoration: underline;
-  text-underline-offset: 10px;
-  text-decoration-thickness: 4px;
-}
+
 .form{
-  font-size: 27px;
+  font-size: 26px;
   font-weight: 400;
   display: grid;
   grid-template-columns: 3fr 7fr;
@@ -72,7 +67,7 @@
   height: 1PX;
   color: #e7ebee;
 }
-.tabButton3
+/* .tabButton3
 {
   margin-right: 25px;
   color: #1fb081;
@@ -83,7 +78,9 @@
 .tabButton4
 {
   margin-right: 25px;}
+*/
 .img{
   display:inline-block;
-  size: 16px*16px;
-}
+  size: 18px*18px;
+  color:#979b9e;
+} 

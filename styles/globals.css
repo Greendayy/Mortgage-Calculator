@@ -8,5 +8,13 @@ body{
   line-height: 1.6;
   font-family: -apple-system-font,Helvetica Neue,sans-serif;
   font-size: 40px;
+}
 
+.tablinks.active,
+.tablinks:focus,
+.tablinks:active{
+  color: #1fb081;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 3px;
 }

@@ -3,15 +3,29 @@ import Image from "next/image";
 import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
+import  Modal  from "../components/Modal";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("tab1");
   const [activeTab2, setActiveTab2] = useState("tab3");
 
+  const [showModal1, setShowModal1] = useState(false);
+  const [showModal2, setShowModal2] = useState(false);
+
+  const openModal1 = () => setShowModal1(true);
+  const closeModal1 = () => setShowModal1(false);
+
+  const openModal2 = () => setShowModal2(true);
+  const closeModal2 = () => setShowModal2(false);
+  
   function handleTabClick(tabName) {
     setActiveTab(tabName);}
   function handleTabClick2(tabName) {
       setActiveTab2(tabName);}
+
+  
+  
+      
   // useEffect(() => {
   //   const defaultOpen = document.getElementById("defaultOpen");
   //   if (defaultOpen) {
@@ -227,14 +241,24 @@ export default function Home() {
               </div>
             </div>
             <hr className={styles.hr} />
+
             <div className={styles.form}>
               <label className={styles.label} htmlFor="name">
                 LPR{" "}
-                <img className={styles.img} src="question.svg" />
+        
+
+                <img className={styles.img} src="question.svg"  onClick={openModal1}/>
+       
+                {showModal1 && (
+        <Modal
+          title="LPR(贷款市场报价利率)"
+          content="自2019年10月起，商贷利率开始改用LPR(贷款市场报价利率计算。LPR基准利率每月更新一次，实际贷款利率在LPR的基础上进行一定的浮动。"
+          onClose={closeModal1}
+        />
+        )}      
               </label>
               
-              
-              <div className={styles.input}>
+   <div className={styles.input}>
               <input
                 className={styles.input}
                 type="num"
@@ -250,7 +274,14 @@ export default function Home() {
             <div className={styles.form}>
               <label className={styles.label} htmlFor="name">
                 基点{" "}
-                <img className={styles.img} src="question.svg" />
+                <img className={styles.img} src="question.svg" onClick={openModal2}/>
+                {showModal2 && (
+        <Modal
+          title="什么是基点?"
+          content="如果浮动10个1个基点=0.01%，基点，相当于在LPR的基础上增加0.1%为实际贷款利率。"
+          onClose={closeModal2}
+        />
+      )}
               </label>
               <div className={styles.input}>
               <input
@@ -325,7 +356,15 @@ export default function Home() {
             <div className={styles.form}>
               <label className={styles.label} htmlFor="name">
                 LPR{" "}
-                <img className={styles.img} src="question.svg" />
+                <img className={styles.img} src="question.svg" onClick={openModal1}/>
+       
+       {showModal1 && (
+<Modal
+ title="LPR(贷款市场报价利率)"
+ content="自2019年10月起，商贷利率开始改用LPR(贷款市场报价利率计算。LPR基准利率每月更新一次，实际贷款利率在LPR的基础上进行一定的浮动。"
+ onClose={closeModal1}
+/>
+)}      
               </label>
               
               
@@ -345,7 +384,14 @@ export default function Home() {
             <div className={styles.form}>
               <label className={styles.label} htmlFor="name">
                 基点{" "}
-                <img className={styles.img} src="question.svg" />
+                <img className={styles.img} src="question.svg" onClick={openModal2}/>
+                {showModal2 && (
+        <Modal
+          title="什么是基点?"
+          content="如果浮动10个1个基点=0.01%，基点，相当于在LPR的基础上增加0.1%为实际贷款利率。"
+          onClose={closeModal2}
+        />
+      )}
               </label>
               <div className={styles.input}>
               <input

@@ -1,14 +1,20 @@
 import Head from "next/head";
-import Image from "next/image";
-import { Inter } from "@next/font/google";
 import styles from "../styles/Home.module.css";
-import { useEffect, useState } from "react";
+import React,{ useState } from "react";
 import  Modal  from "../components/Modal";
+import Picker from '../components/Picker';
+import { yearOptions, rateOptions } from '../db/pickerData';
 
 export default function Home() {
+// tab切换标签
   const [activeTab, setActiveTab] = useState("tab1");
   const [activeTab2, setActiveTab2] = useState("tab3");
+  function handleTabClick(tabName) {
+    setActiveTab(tabName);}
+  function handleTabClick2(tabName) {
+      setActiveTab2(tabName);}
 
+//overlay modal popup
   const [showModal1, setShowModal1] = useState(false);
   const [showModal2, setShowModal2] = useState(false);
 
@@ -18,33 +24,21 @@ export default function Home() {
   const openModal2 = () => setShowModal2(true);
   const closeModal2 = () => setShowModal2(false);
   
-  function handleTabClick(tabName) {
-    setActiveTab(tabName);}
-  function handleTabClick2(tabName) {
-      setActiveTab2(tabName);}
+//picker input
+// const [showPicker,setShowPicker]=useState(false)
+// const [year, setYear] = useState('');
+// const [rate, setRate] = useState('');
 
+// const handleYearSelect = (option) => {
+//   setYear(option);
+// };
+
+// const handleRateSelect = (option) => {
+//   setRate(option);
+// };
   
   
       
-  // useEffect(() => {
-  //   const defaultOpen = document.getElementById("defaultOpen");
-  //   if (defaultOpen) {
-  //     defaultOpen.click();
-  //   }
-  // }, [])
-  // function openForm(evt, formName) {
-  //   var i, tabcontent, tablinks;
-  //   tabcontent = document.getElementsByClassName("tabcontent");
-  //   for (i = 0; i < tabcontent.length; i++) {
-  //     tabcontent[i].style.display = "none";
-  //   }
-  //   tablinks = document.getElementsByClassName("tablinks");
-  //   for (i = 0; i < tablinks.length; i++) {
-  //     tablinks[i].className = tablinks[i].className.replace("active", "");
-  //   }
-  //   document.getElementById(formName).style.display = "block";
-  //   evt.currentTarget.className += " active";
-  // }
   
   return (
     <div>
@@ -53,6 +47,31 @@ export default function Home() {
         <meta name="description" content="calc demo" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div className={styles.section}>
+      <section className={styles.calcResult}>
+        <div className={styles.history}>
+          <div>
+          <h1>
+            房屋总价 -- 万
+          </h1>
+          <p>查看历史></p>
+          </div>
+          <p>首付30%、公积金贷0万·30年·利率3.25%、商业贷10万·30年·利率4.65%、等额本息</p>
+        </div>
+        <div className={styles.detail}>
+      
+          <div>
+          <p>首付款</p>
+          <p>--</p>
+          </div>
+          <div>
+          <p>每月应还（等额本息）</p>
+          <p>516元</p>
+          <p>对比等额本金月供></p>
+          </div>
+        </div>
+      </section>
+      </div>
       <main className={styles.main}>
 {/* 计算方式·表头 */}
         <nav className={styles.tab}>
@@ -185,7 +204,11 @@ export default function Home() {
                 id="gjjnx"
                 defaultValue="30年"
                 placeholder="30年"
+                // onClick={() => setYear(null)}
               />
+              {/* {year !== null && (
+          <Picker options={yearOptions} onSelect={handleYearSelect} />
+        )} */}
               <span className={styles.unit}>></span>
               </div>
             </div>
@@ -204,6 +227,23 @@ export default function Home() {
                 placeholder="3.25%(最新基准利率1倍)"
               />
               <span className={styles.unit}>></span>
+              </div>
+            </div>
+            <hr className={styles.hr} />
+            <div className={styles.form}>
+              <label className={styles.label} htmlFor="name">
+                商贷金额{" "}
+              </label>
+              <div className={styles.input}>
+              <input
+                className={styles.input}
+                type="num"
+                name="sdje"
+                id="sdje"
+                defaultValue="0"
+                placeholder="0"
+              />
+              <span className={styles.unit}>万</span>
               </div>
             </div>
             <hr className={styles.hr} />
@@ -331,7 +371,9 @@ export default function Home() {
                 id="sdnx"
                 defaultValue="30年"
                 placeholder="30年"
+              
               />
+   
               <span className={styles.unit}>></span>
               </div>
             </div>

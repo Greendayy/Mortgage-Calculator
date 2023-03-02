@@ -81,11 +81,14 @@
   padding-bottom: 100px;
 }
 .history{
-  background-color: #23c993;
+  background-color:  #1fb081;
+  background-image:  url("../public/percent.png");
+  background-repeat:no-repeat;
+  background-size:30%;
+  background-position:right;
   color: white;
   padding: 15px 30px 100px 30px;
   display: grid;
-  background-image: url();
   position:absolute;
   width: 100%;
 }
@@ -106,7 +109,7 @@
   justify-content: space-between;
   align-items: center;
   width: 90%;
-  padding: 30px;
+  padding: 30px 50px 10px 50px;
   border-radius: 5px;
   z-index: 1;
   position: relative;
@@ -115,4 +118,15 @@
   position:absolute;
   top:160px;
   box-shadow: rgb(231 235 238) 0px 1px 5px 0px;
+}
+.detail>div>h2{
+  font-size:30px;
+  font-weight: 600;
+}
+.monthly>h2{
+  font-size:30px;
+  font-weight: 600;
+}
+.monthly{
+  text-align: right;
 }

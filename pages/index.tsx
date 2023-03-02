@@ -59,14 +59,13 @@ export default function Home() {
           <p>首付30%、公积金贷0万·30年·利率3.25%、商业贷10万·30年·利率4.65%、等额本息</p>
         </div>
         <div className={styles.detail}>
-      
           <div>
           <p>首付款</p>
-          <p>--</p>
+          <h2>--</h2>
           </div>
-          <div>
-          <p>每月应还（等额本息）</p>
-          <p>516元</p>
+          <div className={styles.monthly}>
+          <p>每月应还(等额本息)</p>
+          <h2>516元</h2>
           <p>对比等额本金月供></p>
           </div>
         </div>

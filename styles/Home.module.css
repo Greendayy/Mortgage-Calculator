@@ -1,23 +1,24 @@
 .main{
-  height: 87vh;
+  height:·100vh;
   width: 100%;
   padding-bottom: 20px;
   padding-left: 29.1199px;
   padding-right: 29.1199px;
   padding-top: 0px;
 }
+
 .calcButton{
-  display: block;
   background-color: #23c993;
   font-size: 28px;
   color:white;
   width: 100%;
-  position:fixed;
-  margin-bottom: 0px;
   height: 98px;
   border-radius: 0.2rem;
   text-align: center;
   border: white solid 13px;
+  position:fixed;
+  bottom: 0px;
+  z-index: 100;
 }
 .tab{
   display: grid;
@@ -25,7 +26,6 @@
   align-items: center;
   padding-top: 42.6001px;
   margin-bottom: 25.56px;
-
 }
 .tabTittle{
   display: flex;
@@ -39,7 +39,6 @@
   font-size: 25px;
   font-weight: 450;
 }
-
 .form{
   font-size: 26px;
   font-weight: 400;
@@ -88,6 +87,7 @@
   display: grid;
   background-image: url();
   position:absolute;
+  width: 100%;
 }
 .history >div{
   display: flex;
@@ -108,7 +108,7 @@
   width: 90%;
   padding: 30px;
   border-radius: 5px;
-  z-index: 2;
+  z-index: 1;
   position: relative;
   margin-left: 5%;
   margin-bottom: 50px;

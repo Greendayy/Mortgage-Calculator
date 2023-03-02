@@ -504,7 +504,7 @@ export default function Home() {
               <span className={styles.unit}>></span>
               </div>
             </div>
-            <hr className={styles.hr} />
+            <hr className={styles.hr} /> 
             <div className={styles.form}></div>
         </form>
       </main>

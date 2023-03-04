@@ -24,7 +24,7 @@ export default function Home() {
   const openModal2 = () => setShowModal2(true);
   const closeModal2 = () => setShowModal2(false);
   
-//picker input
+// picker input
 // const [showPicker,setShowPicker]=useState(false)
 // const [year, setYear] = useState('');
 // const [rate, setRate] = useState('');
@@ -36,8 +36,8 @@ export default function Home() {
 // const handleRateSelect = (option) => {
 //   setRate(option);
 // };
-  
-  
+
+
       
   
   return (
@@ -47,6 +47,7 @@ export default function Home() {
         <meta name="description" content="calc demo" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+{/* 计算结果 */}
       <div className={styles.section}>
       <section className={styles.calcResult}>
         <div className={styles.history}>
@@ -71,6 +72,8 @@ export default function Home() {
         </div>
       </section>
       </div>
+
+      
       <main className={styles.main}>
 {/* 计算方式·表头 */}
         <nav className={styles.tab}>
@@ -83,7 +86,7 @@ export default function Home() {
           </div>
         </nav>
 {/* 按贷款总额·表单 */}
-        <form action="" method="get"  id="tab1"
+        <div  id="tab1"
         className="tabcontent"
         style={{ display: activeTab === "tab1" ? "block" : "none" }}>
           <div className={styles.form}>
@@ -102,9 +105,9 @@ export default function Home() {
             <span className={styles.unit}>万</span>
             </div>
           </div>
-        </form>
+        </div>
 {/* 按房屋总价·表单 */}
-        <form action="" method="get"  id="tab2"
+        <div id="tab2"
         className="tabcontent"
         style={{ display: activeTab === "tab2" ? "block" : "none" }}>
           <div className={styles.form}>
@@ -156,7 +159,7 @@ export default function Home() {
               <span className={styles.unit}>万</span>
               </div>
             </div>        
-        </form>
+        </div>
         <hr className={styles.hr} />
 {/* 贷款方式·表头 */}
         <nav className={styles.tab}>
@@ -171,7 +174,7 @@ export default function Home() {
           </div>
         </nav>
 {/* 组合贷·表单 */}
-          <form action="" method="get" id="tab1"
+          <div id="tab3"
         className="tabcontent"
         style={{ display: activeTab2 === "tab3" ? "block" : "none" }}>
           <div className={styles.form}>
@@ -353,9 +356,9 @@ export default function Home() {
             </div>
             <hr className={styles.hr} />
             <div className={styles.form}></div>
-          </form>
+          </div>
 {/* 商业贷·表单 */}
-        <form action="" method="get" id="tab4"
+        <div id="tab4"
         className="tabcontent"
         style={{ display: activeTab2 === "tab4" ? "block" : "none" }}>
             <div className={styles.form}>
@@ -465,9 +468,9 @@ export default function Home() {
             </div>
             <hr className={styles.hr} />
             <div className={styles.form}></div>
-          </form>
+          </div>
 {/* 公积金贷 ·表单 */}
-          <form action="" method="get"  id="tab5"
+          <div id="tab5"
         className="tabcontent"
         style={{ display: activeTab2 === "tab5" ? "block" : "none" }}>
           <div className={styles.form}>
@@ -505,9 +508,11 @@ export default function Home() {
             </div>
             <hr className={styles.hr} /> 
             <div className={styles.form}></div>
-        </form>
+        </div>
       </main>
+      <div className={styles.buttonBorder}>
       <button className={styles.calcButton}>开始计算</button>
+      </div>
     </div>
   );
   }

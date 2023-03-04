@@ -7,7 +7,7 @@ body{
   margin: 0px;
   line-height: 1.6;
   font-family: -apple-system-font,Helvetica Neue,sans-serif;
-  font-size: 40px;
+  font-size: 20rem;
 }
 
 .tablinks.active,
@@ -15,6 +15,6 @@ body{
 .tablinks:active{
   color: #1fb081;
   text-decoration: underline;
-  text-underline-offset: 10px;
-  text-decoration-thickness: 3px;
+  text-underline-offset: 0.7rem;
+  text-decoration-thickness: 0.2rem;
 }

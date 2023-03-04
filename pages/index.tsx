@@ -4,6 +4,7 @@ import React,{ useState } from "react";
 import  Modal  from "../components/Modal";
 import Picker from '../components/Picker';
 import { yearOptions, rateOptions } from '../db/pickerData';
+import Link from "next/link";
 
 export default function Home() {
 // tab切换标签
@@ -55,7 +56,7 @@ export default function Home() {
           <h1>
             房屋总价 -- 万
           </h1>
-          <p>查看历史></p>
+          <p><Link href='/history'>查看历史></Link></p>
           </div>
           <p className={styles.p}>首付30%、公积金贷0万·30年·利率3.25%、商业贷10万·30年·利率4.65%、等额本息</p>
         </div>
@@ -67,7 +68,7 @@ export default function Home() {
           <div className={styles.monthly}>
           <p>每月应还(等额本息)</p>
           <h2>516元</h2>
-          <p>对比等额本金月供></p>
+          <p><Link href='/detail'>对比等额本金月供></Link></p>
           </div>
         </div>
       </section>

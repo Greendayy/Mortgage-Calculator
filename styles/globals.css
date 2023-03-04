@@ -15,6 +15,6 @@ body{
 .tablinks:active{
   color: #1fb081;
   text-decoration: underline;
-  text-underline-offset: 0.7rem;
-  text-decoration-thickness: 0.2rem;
+  text-underline-offset: 0.5rem;
+  text-decoration-thickness: 0.16rem;
 }

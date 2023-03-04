@@ -57,7 +57,7 @@ export default function Home() {
           </h1>
           <p>查看历史></p>
           </div>
-          <p>首付30%、公积金贷0万·30年·利率3.25%、商业贷10万·30年·利率4.65%、等额本息</p>
+          <p className={styles.p}>首付30%、公积金贷0万·30年·利率3.25%、商业贷10万·30年·利率4.65%、等额本息</p>
         </div>
         <div className={styles.detail}>
           <div>

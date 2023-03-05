@@ -9,7 +9,7 @@ export default function Detail() {
       </header>
       <nav className={styles.nav}>
         <p>
-          <Link href="/">返回</Link>
+          <Link href="/">{"<"}</Link>
         </p>
         <h1>还款详情</h1>
       </nav>

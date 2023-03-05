@@ -10,7 +10,7 @@ export default function History() {
       </head>
       <nav className={styles.nav}>
         <p>
-          <Link href="/">返回</Link>
+          <Link href="/">{"<"}</Link>
         </p>
         <h1>历史记录</h1>
       </nav>

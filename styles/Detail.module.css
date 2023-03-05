@@ -9,17 +9,18 @@
     height: 3rem;
     background-color: #23c993;
     color: white;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 9fr;
     padding-top: 0.5rem;
 }
 .nav>p{
-    margin-right: auto;
     margin-left: 0.5rem;
     font-size: 1rem;
 }
 .nav>h1{
-    margin-right: 9.5rem;
+
+    
+    text-align: center;
 }
 .main{
     padding: 1.8rem 1.4rem;

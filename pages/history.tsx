@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "../styles/Table.module.css";
+import styles from "../styles/History.module.css";
 import { Head } from "next/document";
 
 export default function History() {

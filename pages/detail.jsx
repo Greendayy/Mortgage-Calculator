@@ -1,13 +1,15 @@
+import { Tab } from "antd-mobile/es/components/tabs/tabs";
 import Link from "next/link";
+import styles from "../styles/Tabel.module.css";
 
 export default function Detail() {
   return (
     <>
-      <nav>
-        <span>
+      <nav className={styles.nav}>
+        <p>
           <Link href="/">返回</Link>
-        </span>
-        还款详情
+        </p>
+        <h1>还款详情</h1>
       </nav>
     </>
   );

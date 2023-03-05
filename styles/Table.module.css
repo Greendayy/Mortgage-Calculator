@@ -15,3 +15,23 @@
 .nav>h1{
     margin-right: 9.5rem;
 }
+.table{
+ padding:0rem 1rem;
+}
+.row{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0rem;
+}
+.th{
+    font-size: 0.7rem;
+    color: rgb(71, 75, 78);
+}
+.td{
+    font-size: 1.05rem;
+    font-weight: 480;
+}
+.hr{    
+    height: 1PX;
+    color: #e7ebee;
+  }

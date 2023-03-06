@@ -2,9 +2,8 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import React, { useState } from "react";
 import Modal from "../components/Modal";
-import Picker from "../components/Picker";
-import { yearOptions, rateOptions } from "../db/pickerData";
 import Link from "next/link";
+import Picker from "../components/Picker";
 
 export default function Home() {
   // tab切换标签
@@ -27,19 +26,16 @@ export default function Home() {
   const openModal2 = () => setShowModal2(true);
   const closeModal2 = () => setShowModal2(false);
 
-  // picker input
-  // const [showPicker,setShowPicker]=useState(false)
-  // const [year, setYear] = useState('');
-  // const [rate, setRate] = useState('');
+  //calc card
+  const [showCard, setShowCard] = useState(false);
 
-  // const handleYearSelect = (option) => {
-  //   setYear(option);
-  // };
+  const openCard = () => setShowCard(true);
 
-  // const handleRateSelect = (option) => {
-  //   setRate(option);
-  // };
+  //picker
+  // const [showPicker, setShowPicker] = useState(true);
 
+  // const openPicker = () => setShowPicker(true);
+  // const closePicker = () => setShowPicker(false);
   return (
     <div>
       <Head>
@@ -48,34 +44,36 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {/* 计算结果 */}
-      <div className={styles.section}>
-        <section className={styles.calcResult}>
-          <div className={styles.history}>
-            <div>
-              <h1>房屋总价 -- 万</h1>
-              <p>
-                <Link href="/history">{"查看历史 ᐳ"}</Link>
+      {showCard && (
+        <div className={styles.section}>
+          <section className={styles.calcResult}>
+            <div className={styles.history}>
+              <div>
+                <h1>房屋总价 -- 万</h1>
+                <p>
+                  <Link href="/history">{"查看历史 >"}</Link>
+                </p>
+              </div>
+              <p className={styles.p}>
+                首付30%、公积金贷0万·30年·利率3.25%、商业贷10万·30年·利率4.65%、等额本息
               </p>
             </div>
-            <p className={styles.p}>
-              首付30%、公积金贷0万·30年·利率3.25%、商业贷10万·30年·利率4.65%、等额本息
-            </p>
-          </div>
-          <div className={styles.detail}>
-            <div>
-              <p>首付款</p>
-              <h2>--</h2>
+            <div className={styles.detail}>
+              <div>
+                <p>首付款</p>
+                <h2>--</h2>
+              </div>
+              <div className={styles.monthly}>
+                <p>每月应还(等额本息)</p>
+                <h2>516元</h2>
+                <p>
+                  <Link href="/detail">{"对比等额本金月供 >"}</Link>
+                </p>
+              </div>
             </div>
-            <div className={styles.monthly}>
-              <p>每月应还(等额本息)</p>
-              <h2>516元</h2>
-              <p>
-                <Link href="/detail">{"对比等额本金月供 ᐳ"}</Link>
-              </p>
-            </div>
-          </div>
-        </section>
-      </div>
+          </section>
+        </div>
+      )}
 
       <main className={styles.main}>
         {/* 计算方式·表头 */}
@@ -157,7 +155,9 @@ export default function Home() {
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
+          <Picker />
           <hr className={styles.hr} />
+
           <div className={styles.form}>
             <label className={styles.label} htmlFor="name">
               贷款金额{" "}
@@ -235,11 +235,7 @@ export default function Home() {
                 id="gjjnx"
                 defaultValue="30年"
                 placeholder="30年"
-                // onClick={() => setYear(null)}
               />
-              {/* {year !== null && (
-          <Picker options={yearOptions} onSelect={handleYearSelect} />
-        )} */}
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
@@ -554,7 +550,9 @@ export default function Home() {
         </div>
       </main>
       <div className={styles.buttonBorder}>
-        <button className={styles.calcButton}>开始计算</button>
+        <button className={styles.calcButton} onClick={openCard}>
+          开始计算
+        </button>
       </div>
     </div>
   );

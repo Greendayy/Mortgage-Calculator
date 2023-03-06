@@ -9,7 +9,7 @@ export default function Detail() {
       </header>
       <nav className={styles.nav}>
         <p>
-          <Link href="/">{"<"}</Link>
+          <Link href="/">{"ᐸ"}</Link>
         </p>
         <h1>还款详情</h1>
       </nav>
@@ -45,9 +45,7 @@ export default function Detail() {
               checked
               className={styles.radio}
             />
-            <label for="interest" className={styles.label}>
-              优先看等额本息
-            </label>
+            <label className={styles.label}>优先看等额本息</label>
           </div>
           <div className={styles.select}>
             <input
@@ -57,9 +55,7 @@ export default function Detail() {
               value="principal"
               className={styles.radio}
             />
-            <label for="principal" className={styles.label}>
-              优先看等额本金
-            </label>
+            <label className={styles.label}>优先看等额本金</label>
           </div>
         </section>
         <h2 className={styles.res}>还款细则</h2>

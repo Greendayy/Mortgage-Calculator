@@ -54,7 +54,7 @@ export default function Home() {
             <div>
               <h1>房屋总价 -- 万</h1>
               <p>
-                <Link href="/history">{"查看历史 >"}</Link>
+                <Link href="/history">{"查看历史 ᐳ"}</Link>
               </p>
             </div>
             <p className={styles.p}>
@@ -70,7 +70,7 @@ export default function Home() {
               <p>每月应还(等额本息)</p>
               <h2>516元</h2>
               <p>
-                <Link href="/detail">{"对比等额本金月供 >"}</Link>
+                <Link href="/detail">{"对比等额本金月供 ᐳ"}</Link>
               </p>
             </div>
           </div>

@@ -43,6 +43,29 @@ export default function Home() {
     setSelectedValue(value);
   };
 
+  //calc
+  const [principal, setPrincipal] = useState("");
+  const [interest, setInterest] = useState("");
+  const [term, setTerm] = useState("");
+  const [totalPrice, setTotalPrice] = useState("");
+
+  const [result, setResult] = useState("");
+
+  const calculatePayment = () => {
+    // if (!principal || !interest || !term) {
+    //   setResult("Please fill in all fields.");
+    //   return;
+    // }
+
+    const p = parseFloat(principal);
+    const i = parseFloat(interest) / 100 / 12;
+    const n = parseFloat(term) * 12;
+    const housePrice = parseFloat(totalPrice);
+
+    const payment = (p * i) / (1 - Math.pow(1 + i, -n));
+    setResult(payment.toFixed(2));
+  };
+
   return (
     <div>
       <Head>
@@ -56,7 +79,7 @@ export default function Home() {
           <section className={styles.calcResult}>
             <div className={styles.history}>
               <div>
-                <h1>房屋总价 -- 万</h1>
+                <h1>房屋总价 {totalPrice ? `${totalPrice} 万` : "-- 万"} </h1>
                 <p>
                   <Link href="/history">{"查看历史 >"}</Link>
                 </p>
@@ -72,7 +95,8 @@ export default function Home() {
               </div>
               <div className={styles.monthly}>
                 <p>每月应还(等额本息)</p>
-                <h2>516元</h2>
+                {result && <h2>{result}</h2>}
+                {/* <h2>516元</h2> */}
                 <p>
                   <Link href="/detail">{"对比等额本金月供 >"}</Link>
                 </p>
@@ -108,7 +132,7 @@ export default function Home() {
           style={{ display: activeTab === "tab1" ? "block" : "none" }}
         >
           <div className={styles.form}>
-            <label className={styles.label} htmlFor="name">
+            <label className={styles.label} htmlFor="principal">
               贷款金额{" "}
             </label>
             <div className={styles.input}>
@@ -116,9 +140,11 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="dkje"
-                id="dkje"
                 defaultValue={0}
                 required
+                id="principal"
+                value={principal}
+                onChange={(e) => setPrincipal(e.target.value)}
               />
               <span className={styles.unit}>万</span>
             </div>
@@ -131,16 +157,18 @@ export default function Home() {
           style={{ display: activeTab === "tab2" ? "block" : "none" }}
         >
           <div className={styles.form}>
-            <label className={styles.label} htmlFor="name">
+            <label className={styles.label} htmlFor="totalPrice">
               房屋总价{" "}
             </label>
             <div className={styles.input}>
               <input
                 className={styles.input}
                 type="num"
-                name="fwzj"
-                id="fwzj"
+                name="totalPrice"
+                id="totalPrice"
                 defaultValue={0}
+                value={totalPrice}
+                onChange={(e) => setTotalPrice(e.target.value)}
               />
               <span className={styles.unit}>万</span>
             </div>
@@ -300,9 +328,11 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="sdnx"
-                id="sdnx"
                 defaultValue="30年"
                 placeholder="30年"
+                id="term"
+                value={term}
+                onChange={(e) => setTerm(e.target.value)}
               />
               <span className={styles.unit}>{">"}</span>
             </div>
@@ -317,9 +347,12 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="llfs"
-                id="llfs"
                 placeholder="使用最新LPR"
                 defaultValue="使用最新LPR"
+                id="interest"
+                value={interest}
+                onChange={(e) => setInterest(e.target.value)}
+                step="0.01"
               />
               <span className={styles.unit}>{">"}</span>
             </div>
@@ -402,6 +435,7 @@ export default function Home() {
             </div>
           </div>
           <hr className={styles.hr} />
+          <div className={styles.form}></div>
           <div className={styles.form}></div>
         </div>
         {/* 商业贷·表单 */}
@@ -567,7 +601,13 @@ export default function Home() {
         </div>
       </main>
       <div className={styles.buttonBorder}>
-        <button className={styles.calcButton} onClick={openCard}>
+        <button
+          className={styles.calcButton}
+          onClick={() => {
+            openCard();
+            calculatePayment();
+          }}
+        >
           开始计算
         </button>
       </div>

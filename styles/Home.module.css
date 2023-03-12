@@ -59,6 +59,7 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  outline: none;
 }
 .formMain{
   display: grid;

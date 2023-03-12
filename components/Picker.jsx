@@ -1,26 +1,65 @@
 import React, { useState } from "react";
 import styles from "../styles/Picker.module.css";
 
-export default function Picker() {
+export default function Picker({ onClose, onSelect }) {
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const handleSelect = (value) => {
+    setSelectedValue(value);
+  };
+
+  const handleConfirm = () => {
+    onSelect(selectedValue);
+    onClose();
+  };
+
+  const options = [
+    "15%（2万）",
+    "20%（2万）",
+    "25%（3万）",
+    "30%（4万）",
+    "35%（4万）",
+    "40%（5万）",
+    "45%（6万）",
+  ];
   return (
     <div className={styles.overlay}>
       <div className={styles.picker}>
         <header className={styles.head}>
-          <button className={styles.cancel}>取消</button>
-          <button className={styles.confirm}>确定</button>
+          <button className={styles.cancel} onClick={onClose}>
+            取消
+          </button>
+          <button className={styles.confirm} onClick={handleConfirm}>
+            确定
+          </button>
         </header>
-        <main className={styles.main}>
-          <ul className={styles.select}>
-            <li className={styles.option}>15%（2万）</li>
-            <li className={styles.option}>20%（2万）</li>
-            <li className={styles.option}>25%（3万）</li>
-            <li className={styles.option}>30%（4万）</li>
-            <li className={styles.option}>35%（4万）</li>
-            <li className={styles.option}>40%（5万）</li>
-            <li className={styles.option}>45%（6万）</li>
-          </ul>
-          <div className={styles.selectBox}></div>
-        </main>
+        <div className={styles.wrapper}>
+          <main className={styles.main}>
+            <ul className={styles.select}>
+              {options.map((optionValue) => (
+                <li
+                  key={optionValue}
+                  className={`${styles.option} ${
+                    optionValue === selectedValue ? styles.selected : ""
+                  }`}
+                  onClick={() => handleSelect(optionValue)}
+                >
+                  {optionValue}
+                </li>
+              ))}
+            </ul>
+          </main>
+          <div
+            className={`${styles.selectBox} ${
+              selectedValue ? styles.selected : ""
+            }`}
+          >
+            {" "}
+            {selectedValue && (
+              <span className={styles.selectedValue}>{selectedValue}</span>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

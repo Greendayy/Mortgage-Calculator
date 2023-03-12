@@ -32,10 +32,17 @@ export default function Home() {
   const openCard = () => setShowCard(true);
 
   //picker
-  // const [showPicker, setShowPicker] = useState(true);
+  const [showPicker, setShowPicker] = useState(false);
 
-  // const openPicker = () => setShowPicker(true);
-  // const closePicker = () => setShowPicker(false);
+  const openPicker = () => setShowPicker(true);
+  const closePicker = () => setShowPicker(false);
+  //picker select
+  const [selectedValue, setSelectedValue] = useState("");
+
+  const handleSelectValue = (value) => {
+    setSelectedValue(value);
+  };
+
   return (
     <div>
       <Head>
@@ -146,16 +153,26 @@ export default function Home() {
             <div className={styles.input}>
               <input
                 className={styles.input}
-                type="num"
+                type="text"
                 name="sfxz"
                 id="sfxz"
                 defaultValue="30%（0万）"
                 placeholder="30%（0万）"
+                onClick={openPicker}
+                value={selectedValue}
               />
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
-          <Picker />
+          {showPicker && (
+            <Picker
+              onClose={closePicker}
+              onSelect={(value) => {
+                setSelectedValue(value);
+                setShowPicker(false);
+              }}
+            />
+          )}
           <hr className={styles.hr} />
 
           <div className={styles.form}>

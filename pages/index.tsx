@@ -43,7 +43,15 @@ export default function Home() {
     setSelectedValue(value);
   };
 
-  //calc
+  //calc需现实项目：
+  //房屋总价 totalPrice
+  //公积金贷金额 providentFundLoanAmount pflA
+  //公积金贷年限 providentFundLoanPeriod pflP
+  //公积金贷利率 providentFundLoanInterestRate pflIR
+  //商业贷金额 businessLoanAmount blA
+  //商业贷年限 businessLoanPeriod blP
+  //商业贷利率 businessLoanInterestRate blIR
+  //首付款 = 房屋售价 × 首付比例 payInAdvance = totalPrice * downPaymentRatio
   const [principal, setPrincipal] = useState("");
   const [interest, setInterest] = useState("");
   const [term, setTerm] = useState("");

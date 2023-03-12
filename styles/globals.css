@@ -1,13 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+html {
+  font-size: 32px;
+  font-family: -apple-system-font,Helvetica Neue,sans-serif;
+}
 body{
   box-sizing: border-box;
-  margin: 0px;
-  line-height: 1.8rem;
-  font-family: -apple-system-font,Helvetica Neue,sans-serif;
-  font-size: 1.2rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+  line-height: 1.6;
+  background-color: #ffffff;
 }
 
 .tablinks.active,

@@ -69,38 +69,6 @@
       /* 确保覆盖层相对于主体定位 */
   }
   
-  .main::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 50%;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
-}
-
-.main::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 100%);
-}
-
-  
-  .selectBox{
-      margin: 1rem auto; /* 使选框居中 */
-      width: 100%; /* 自定义选框宽度 */
-      height: 2rem; /* 自定义选框高度 */
-      border: 1px solid #edeef0; /* 自定义选框外边框样式 */
-      box-sizing: border-box; /* 确保选框大小包含边框 */
-      position: absolute; /* 确保自定义指示器相对选框定位 */
-      bottom:3rem;
-      z-index: 11; /* 确保选框在覆盖层上方 */
-  }
-  
 
   
   

@@ -5,11 +5,12 @@ export default function Picker({ onClose, onSelect }) {
   const [selectedValue, setSelectedValue] = useState("");
 
   const handleSelect = (value) => {
+    console.log('value',value)
     setSelectedValue(value);
+    onSelect(selectedValue);
   };
 
   const handleConfirm = () => {
-    onSelect(selectedValue);
     onClose();
   };
 

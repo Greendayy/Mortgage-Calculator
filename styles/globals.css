@@ -8,7 +8,7 @@ html {
 body{
   box-sizing: border-box;
   margin: 0 auto;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
   line-height: 1.6;
   background-color: #ffffff;
 }
@@ -18,6 +18,6 @@ body{
 .tablinks:active{
   color: #1fb081;
   text-decoration: underline;
-  text-underline-offset: 0.5rem;
-  text-decoration-thickness: 0.16rem;
+  text-underline-offset: 0.1rem;
+  text-decoration-thickness: 0.1rem;
 }

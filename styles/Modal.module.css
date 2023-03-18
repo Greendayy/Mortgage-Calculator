@@ -1,9 +1,9 @@
 .modal{
     display: grid;
     background: #fff;
-    width: 17rem;
-    height: 18rem;
-    border-radius:0.2rem;
+    width: 9rem;
+    height: 9rem;
+    border-radius:0.1rem;
     padding: 2rem;
     z-index: 98;
 }
@@ -14,20 +14,21 @@
 .header{
     display: flex;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 0.6rem;
     font-weight: 700;
     position: relative;
     bottom:0.8rem;
+    margin-top:0.6rem 
   }
 .body{
     display: flex;
     justify-content: center;
-    font-size: 1rem;
-    line-height: 1.4rem;
+    font-size: 0.5rem;
+    line-height: 0.7rem;
     padding: 0rem 0.1rem;
     position: relative;
     bottom:1rem;
-    margin:0.3rem;
+    margin:0.6rem;
 }
 /* .overlay{
     position:absolute;
@@ -45,12 +46,12 @@
     position: relative;
     bottom:1rem;
     background-color: #23c993;
-    font-size: 1.2rem;
+    font-size: 0.6rem;
     color:white;
     width: 98%;
     margin:0 auto;
-    height: 3rem;
-    border-radius: 0.2rem;
+    height: 1.6rem;
+    border-radius: 0.1rem;
     text-align: center;
 
 }
@@ -69,8 +70,8 @@
     }
     .modal {
       background-color: white;
-      padding: 1rem;
-      border-radius: 0.4rem;
+      padding: 0.5rem;
+      border-radius: 0.1rem;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 

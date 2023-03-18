@@ -15,7 +15,7 @@
     bottom: 0; 
     background-color: #fff;
     width: 100%;
-    height: 13rem;
+    height: 6rem;
     transition: transform 0.3s ease-out;
   }
   .selectedValue {
@@ -34,9 +34,9 @@
     grid-template-columns: 1fr 1fr;
     width: 100%;
     background-color:#f8f9fb;
-    padding: 1rem 1rem;
-    font-size: 1.1rem;
-    font-weight: 460;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.5rem;
+    font-weight: 420;
   }
   .cancel{
     text-align: left;
@@ -63,7 +63,7 @@
       height: 8rem;
       padding: 4rem 0rem 4rem 0rem;
       overflow-y: scroll;
-      font-size: 1rem;
+      font-size: 0.5rem;
       text-align: center;
       /* 确保覆盖层相对于主体定位 */
   }

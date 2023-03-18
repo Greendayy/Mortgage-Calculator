@@ -176,7 +176,6 @@ export default function Home() {
     //   setResult("Please fill in all fields.");
     //   return;
     // }
-
     const p = parseFloat(principal);
     const i = parseFloat(interest) / 100 / 12;
     const n = parseFloat(term) * 12;
@@ -346,7 +345,7 @@ export default function Home() {
         </div>
         <hr className={styles.hr} />
         {/* 贷款方式·表头 */}
-        <nav className={styles.tab}>
+        <nav className={styles.tab} style={{ marginTop: '1rem' }}>
           <h1 className={styles.tabTittle}>贷款方式</h1>
           <div className={styles.tabButton}>
             <button

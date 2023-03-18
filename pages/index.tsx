@@ -4,6 +4,13 @@ import React, { useState } from "react";
 import Modal from "../components/Modal";
 import Link from "next/link";
 import Picker from "../components/Picker";
+import {
+  prepaymentOptions,
+  providentFundPeriodOptions,
+  providentFundInterestRateOptions,
+  businessLoanTermOptions,
+  interestRateMethodOpttions,
+} from "../db/pickerData";
 
 export default function Home() {
   // tab切换标签
@@ -32,25 +39,130 @@ export default function Home() {
   const openCard = () => setShowCard(true);
 
   //picker
-  const [showPicker, setShowPicker] = useState(false);
+  const [showPickerPrepayment, setShowPickerPrepayment] = useState(false);
+  const [showPickerProvidentFundPeriod, setShowPickerProvidentFundPeriod] =
+    useState(false);
+  const [
+    showPickerProvidentFundInterestRate,
+    setShowPickerProvidentFundInterestRate,
+  ] = useState(false);
 
-  const openPicker = () => setShowPicker(true);
-  const closePicker = () => setShowPicker(false);
+  const [showPickerBusinessLoanTerm, setShowPickerBusinessLoanTerm] =
+    useState(false);
+  const [showPickerInterestRateMethod, setShowPickerInterestRateMethod] =
+    useState(false);
+
+  const openPickerPrepayment = () => setShowPickerPrepayment(true);
+  const closePickerPrepayment = () => setShowPickerPrepayment(false);
+  const openPickerProvidentFundPeriod = () =>
+    setShowPickerProvidentFundPeriod(true);
+  const closePickerProvidentFundPeriod = () =>
+    setShowPickerProvidentFundPeriod(false);
+  const openPickerProvidentFundInterestRate = () =>
+    setShowPickerProvidentFundInterestRate(true);
+  const closePickerProvidentFundInterestRate = () =>
+    setShowPickerProvidentFundInterestRate(false);
+  const openPickerBusinessLoanTerm = () => setShowPickerBusinessLoanTerm(true);
+  const closePickerBusinessLoanTerm = () =>
+    setShowPickerBusinessLoanTerm(false);
+  const openPickerInterestRateMethod = () =>
+    setShowPickerInterestRateMethod(true);
+  const closePickerInterestRateMethod = () =>
+    setShowPickerInterestRateMethod(false);
   //picker select
-  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedLabelPrepayment, setSelectedLabelPrepayment] = useState("");
+  const [calculationValuePrepayment, setCalculationValuePrepayment] =
+    useState(0.3);
+  const [
+    selectedLabelProvidentFundPeriod,
+    setSelectedLabelProvidentFundPeriod,
+  ] = useState("");
+  const [
+    calculationValueProvidentFundPeriod,
+    setCalculationValueProvidentFundPeriod,
+  ] = useState(30);
+  const [
+    selectedLabelProvidentFundInterestRate,
+    setSelectedLabelProvidentFundInterestRate,
+  ] = useState("");
+  const [
+    calculationValueProvidentFundInterestRate,
+    setCalculationValueProvidentFundInterestRate,
+  ] = useState(0.0325);
+  const [selectedLabelBusinessLoanTerm, setSelectedLabelBusinessLoanTerm] =
+    useState("");
+  const [
+    calculationValueBusinessLoanTerm,
+    setCalculationValueBusinessLoanTerm,
+  ] = useState(30);
+  const [selectedLabelInterestRateMethod, setSelectedLabelInterestRateMethod] =
+    useState("");
+  const [
+    calculationValueInterestRateMethod,
+    setCalculationValueInterestRateMethod,
+  ] = useState(0.034);
 
-  const handleSelectValue = (value) => {
-    setSelectedValue(value);
+  const handleSelectPrepayment = (selectedOption) => {
+    setSelectedLabelPrepayment(selectedOption.label);
+    setCalculationValuePrepayment(selectedOption.value);
   };
 
+  const handlePickerSelectPrepayment = (selectedOption) => {
+    handleSelectPrepayment(selectedOption);
+    setSelectedLabelPrepayment(selectedOption.label);
+  };
+  console.log("calculationValuePrepayment ", calculationValuePrepayment);
+
+  const handleSelectProvidentFundPeriod = (selectedOption) => {
+    setSelectedLabelProvidentFundPeriod(selectedOption.label);
+    setCalculationValueProvidentFundPeriod(selectedOption.value);
+  };
+
+  const handlePickerSelectProvidentFundPeriod = (selectedOption) => {
+    handleSelectProvidentFundPeriod(selectedOption);
+    setSelectedLabelProvidentFundPeriod(selectedOption.label);
+  };
+  const handleSelectProvidentFundInterestRate = (selectedOption) => {
+    setSelectedLabelProvidentFundInterestRate(selectedOption.label);
+    setCalculationValueProvidentFundInterestRate(selectedOption.value);
+  };
+
+  const handlePickerSelectProvidentFundInterestRate = (selectedOption) => {
+    handleSelectProvidentFundInterestRate(selectedOption);
+    setSelectedLabelProvidentFundInterestRate(selectedOption.label);
+  };
+
+  const handleSelectBusinessLoanTerm = (selectedOption) => {
+    setSelectedLabelBusinessLoanTerm(selectedOption.label);
+    setCalculationValueBusinessLoanTerm(selectedOption.value);
+  };
+
+  const handlePickerSelectBusinessLoanTerm = (selectedOption) => {
+    handleSelectBusinessLoanTerm(selectedOption);
+    setSelectedLabelBusinessLoanTerm(selectedOption.label);
+  };
+  const handleSelectInterestRateMethod = (selectedOption) => {
+    setSelectedLabelInterestRateMethod(selectedOption.label);
+    setCalculationValueInterestRateMethod(selectedOption.value);
+  };
+
+  const handlePickerSelectInterestRateMethod = (selectedOption) => {
+    handleSelectInterestRateMethod(selectedOption);
+    setSelectedLabelInterestRateMethod(selectedOption.label);
+  };
   //calc需现实项目：
   //房屋总价 totalPrice
-  //公积金贷金额 providentFundLoanAmount pflA
-  //公积金贷年限 providentFundLoanPeriod pflP
-  //公积金贷利率 providentFundLoanInterestRate pflIR
-  //商业贷金额 businessLoanAmount blA
-  //商业贷年限 businessLoanPeriod blP
-  //商业贷利率 businessLoanInterestRate blIR
+  //贷款金额 loanAmount
+  //首付 prepayment
+  //公积金年限 providentFundPeriod
+  //公积金利率providentFundInterestRate
+  //公积金贷金额 providentFundLoanAmount
+  //公积金贷年限 providentFundLoanPeriod
+  //公积金贷利率 providentFundLoanInterestRate
+  //商业贷金额 businessLoanAmount
+  //商业贷年限 businessLoanTerm
+  //利率方式 interestRateMethod
+  //商业贷利率 businessLoanInterestRate
   //首付款 = 房屋售价 × 首付比例 payInAdvance = totalPrice * downPaymentRatio
   const [principal, setPrincipal] = useState("");
   const [interest, setInterest] = useState("");
@@ -189,24 +301,28 @@ export default function Home() {
             <div className={styles.input}>
               <input
                 className={styles.input}
-                type="text"
+                type="mun"
                 name="sfxz"
-                id="sfxz"
-                defaultValue="30%（0万）"
-                placeholder="30%（0万）"
-                onClick={openPicker}
-                value={selectedValue}
+                id="prepayment"
+                // defaultValue={0.03}
+                placeholder={
+                  selectedLabelPrepayment
+                    ? selectedLabelPrepayment
+                    : "30%（0万）"
+                }
+                onClick={openPickerPrepayment}
+                calcValue={
+                  calculationValuePrepayment ? calculationValuePrepayment : 0.03
+                }
               />
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
-          {showPicker && (
+          {showPickerPrepayment && (
             <Picker
-              onClose={closePicker}
-              onSelect={(value) => {
-                setSelectedValue(value);
-                setShowPicker(false);
-              }}
+              onClose={closePickerPrepayment}
+              onSelect={handlePickerSelectPrepayment}
+              options={prepaymentOptions}
             />
           )}
           <hr className={styles.hr} />
@@ -220,7 +336,7 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="dkje"
-                id="dkje"
+                id="loanAmount"
                 defaultValue={0}
                 placeholder="0"
               />
@@ -286,12 +402,28 @@ export default function Home() {
                 type="num"
                 name="gjjnx"
                 id="gjjnx"
-                defaultValue="30年"
-                placeholder="30年"
+                placeholder={
+                  selectedLabelProvidentFundPeriod
+                    ? selectedLabelProvidentFundPeriod
+                    : "30年"
+                }
+                onClick={openPickerProvidentFundPeriod}
+                calcValue={
+                  calculationValueProvidentFundPeriod
+                    ? calculationValueProvidentFundPeriod
+                    : 30
+                }
               />
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
+          {showPickerProvidentFundPeriod && (
+            <Picker
+              onClose={closePickerProvidentFundPeriod}
+              onSelect={handlePickerSelectProvidentFundPeriod}
+              options={providentFundPeriodOptions}
+            />
+          )}
           <hr className={styles.hr} />
           <div className={styles.form}>
             <label className={styles.label} htmlFor="name">
@@ -303,12 +435,28 @@ export default function Home() {
                 type="text"
                 name="gjjlv"
                 id="gjjlv"
-                defaultValue="3.25%(最新基准利率1倍)"
-                placeholder="3.25%(最新基准利率1倍)"
+                placeholder={
+                  selectedLabelProvidentFundInterestRate
+                    ? selectedLabelProvidentFundInterestRate
+                    : "3.25%(最新基准利率1倍)"
+                }
+                onClick={openPickerProvidentFundInterestRate}
+                calcValue={
+                  calculationValueProvidentFundInterestRate
+                    ? calculationValueProvidentFundInterestRate
+                    : 0.0325
+                }
               />
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
+          {showPickerProvidentFundInterestRate && (
+            <Picker
+              onClose={closePickerProvidentFundInterestRate}
+              onSelect={handlePickerSelectProvidentFundInterestRate}
+              options={providentFundInterestRateOptions}
+            />
+          )}
           <hr className={styles.hr} />
           <div className={styles.form}>
             <label className={styles.label} htmlFor="name">
@@ -336,15 +484,29 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="sdnx"
-                defaultValue="30年"
-                placeholder="30年"
                 id="term"
-                value={term}
-                onChange={(e) => setTerm(e.target.value)}
+                placeholder={
+                  selectedLabelBusinessLoanTerm
+                    ? selectedLabelBusinessLoanTerm
+                    : "30年"
+                }
+                onClick={openPickerBusinessLoanTerm}
+                calcValue={
+                  calculationValueBusinessLoanTerm
+                    ? calculationValueBusinessLoanTerm
+                    : 30
+                }
               />
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
+          {showPickerBusinessLoanTerm && (
+            <Picker
+              onClose={closePickerBusinessLoanTerm}
+              onSelect={handlePickerSelectBusinessLoanTerm}
+              options={businessLoanTermOptions}
+            />
+          )}
           <hr className={styles.hr} />
           <div className={styles.form}>
             <label className={styles.label} htmlFor="name">
@@ -355,16 +517,29 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="llfs"
-                placeholder="使用最新LPR"
-                defaultValue="使用最新LPR"
                 id="interest"
-                value={interest}
-                onChange={(e) => setInterest(e.target.value)}
-                step="0.01"
+                placeholder={
+                  selectedLabelInterestRateMethod
+                    ? selectedLabelInterestRateMethod
+                    : "使用最新LPR"
+                }
+                onClick={openPickerInterestRateMethod}
+                calcValue={
+                  calculationValueInterestRateMethod
+                    ? calculationValueInterestRateMethod
+                    : 0.034
+                }
               />
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
+          {showPickerInterestRateMethod && (
+            <Picker
+              onClose={closePickerInterestRateMethod}
+              onSelect={handlePickerSelectInterestRateMethod}
+              options={interestRateMethodOpttions}
+            />
+          )}
           <hr className={styles.hr} />
 
           <div className={styles.form}>
@@ -462,13 +637,29 @@ export default function Home() {
                 type="num"
                 name="sdnx"
                 id="sdnx"
-                defaultValue="30年"
-                placeholder="30年"
+                placeholder={
+                  selectedLabelBusinessLoanTerm
+                    ? selectedLabelBusinessLoanTerm
+                    : "30年"
+                }
+                onClick={openPickerBusinessLoanTerm}
+                calcValue={
+                  calculationValueBusinessLoanTerm
+                    ? calculationValueBusinessLoanTerm
+                    : 30
+                }
               />
 
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
+          {showPickerBusinessLoanTerm && (
+            <Picker
+              onClose={closePickerBusinessLoanTerm}
+              onSelect={handlePickerSelectBusinessLoanTerm}
+              options={businessLoanTermOptions}
+            />
+          )}
           <hr className={styles.hr} />
           <div className={styles.form}>
             <label className={styles.label} htmlFor="name">
@@ -479,13 +670,29 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="llfs"
-                id="llfs"
-                placeholder="使用最新LPR"
-                defaultValue="使用最新LPR"
+                id="interest"
+                placeholder={
+                  selectedLabelInterestRateMethod
+                    ? selectedLabelInterestRateMethod
+                    : "使用最新LPR"
+                }
+                onClick={openPickerInterestRateMethod}
+                calcValue={
+                  calculationValueInterestRateMethod
+                    ? calculationValueInterestRateMethod
+                    : 0.034
+                }
               />
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
+          {showPickerInterestRateMethod && (
+            <Picker
+              onClose={closePickerInterestRateMethod}
+              onSelect={handlePickerSelectInterestRateMethod}
+              options={interestRateMethodOpttions}
+            />
+          )}
           <hr className={styles.hr} />
           <div className={styles.form}>
             <label className={styles.label} htmlFor="name">
@@ -581,12 +788,28 @@ export default function Home() {
                 type="num"
                 name="gjjnx"
                 id="gjjnx"
-                defaultValue="30年"
-                placeholder="30年"
+                placeholder={
+                  selectedLabelProvidentFundPeriod
+                    ? selectedLabelProvidentFundPeriod
+                    : "30年"
+                }
+                onClick={openPickerProvidentFundPeriod}
+                calcValue={
+                  calculationValueProvidentFundPeriod
+                    ? calculationValueProvidentFundPeriod
+                    : 30
+                }
               />
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
+          {showPickerProvidentFundPeriod && (
+            <Picker
+              onClose={closePickerProvidentFundPeriod}
+              onSelect={handlePickerSelectProvidentFundPeriod}
+              options={providentFundPeriodOptions}
+            />
+          )}
           <hr className={styles.hr} />
           <div className={styles.form}>
             <label className={styles.label} htmlFor="name">
@@ -598,14 +821,29 @@ export default function Home() {
                 type="text"
                 name="gjjlv"
                 id="gjjlv"
-                defaultValue="3.25%(最新基准利率1倍)"
-                placeholder="3.25%(最新基准利率1倍)"
+                placeholder={
+                  selectedLabelProvidentFundInterestRate
+                    ? selectedLabelProvidentFundInterestRate
+                    : "3.25%(最新基准利率1倍)"
+                }
+                onClick={openPickerProvidentFundInterestRate}
+                calcValue={
+                  calculationValueProvidentFundInterestRate
+                    ? calculationValueProvidentFundInterestRate
+                    : 0.0325
+                }
               />
               <span className={styles.unit}>{">"}</span>
             </div>
           </div>
+          {showPickerProvidentFundInterestRate && (
+            <Picker
+              onClose={closePickerProvidentFundInterestRate}
+              onSelect={handlePickerSelectProvidentFundInterestRate}
+              options={providentFundInterestRateOptions}
+            />
+          )}
           <hr className={styles.hr} />
-          <div className={styles.form}></div>
         </div>
       </main>
       <div className={styles.buttonBorder}>

@@ -1,28 +1,23 @@
 import React, { useState } from "react";
 import styles from "../styles/Picker.module.css";
 
-export default function Picker({ onClose, onSelect }) {
+export default function Picker({ onClose, onSelect,options }) {
   const [selectedValue, setSelectedValue] = useState("");
 
-  const handleSelect = (value) => {
-    console.log('value',value)
-    setSelectedValue(value);
+  const handleSelect = (label) => {
+    console.log("label", label);
+    setSelectedValue(label);
   };
-
+  const calculateValue = (label) => {
+    const option = options.find((option) => option.label === label);
+    console.log("value", option.value);
+    return option ? option.value : 0; //返回选项的值（若为0则选项无效）
+  };
   const handleConfirm = () => {
-    onSelect(selectedValue);
+    onSelect({ label: selectedValue, value: calculateValue(selectedValue) });
     onClose();
   };
 
-  const options = [
-    "15%（2万）",
-    "20%（2万）",
-    "25%（3万）",
-    "30%（4万）",
-    "35%（4万）",
-    "40%（5万）",
-    "45%（6万）",
-  ];
   return (
     <div className={styles.overlay}>
       <div className={styles.picker}>
@@ -39,13 +34,13 @@ export default function Picker({ onClose, onSelect }) {
             <ul className={styles.select}>
               {options.map((optionValue) => (
                 <li
-                  key={optionValue}
+                  key={optionValue.label}
                   className={`${styles.option} ${
-                    optionValue === selectedValue ? styles.selected : ""
+                    optionValue.label === selectedValue ? styles.selected : ""
                   }`}
-                  onClick={() => handleSelect(optionValue)}
+                  onClick={() => handleSelect(optionValue.label)}
                 >
-                  {optionValue}
+                  {optionValue.label}
                 </li>
               ))}
             </ul>

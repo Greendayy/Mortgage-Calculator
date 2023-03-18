@@ -1,39 +1,299 @@
-export const yearOptions = [
-  "1年",
-  "2年",
-  "3年",
-  "4年",
-  "5年",
-  "6年",
-  "7年",
-  "8年",
-  "9年",
-  "10年",
-  "11年",
-  "12年",
-  "13年",
-  "14年",
-  "15年",
-  "16年",
-  "17年",
-  "18年",
-  "19年",
-  "20年",
-  "21年",
-  "22年",
-  "23年",
-  "24年",
-  "25年",
-  "26年",
-  "27年",
-  "28年",
-  "29年",
-  "30年",
+export const prepaymentOptions = [
+  {
+    label: "15%（2万）",
+    value: 0.15,
+  },
+  {
+    label: "20%（2万）",
+    value: 0.2,
+  },
+  {
+    label: "25%（3万）",
+    value: 0.25,
+  },
+  {
+    label: "30%（4万）",
+    value: 0.3,
+  },
+  {
+    label: "35%（4万）",
+    value: 0.35,
+  },
+  {
+    label: "40%（5万）",
+    value: 0.4,
+  },
+  {
+    label: "45%（6万）",
+    value: 0.45,
+  },
 ];
 
-export const rateOptions = [
-  "3.25% (最新基准利率1倍)",
-  "3.58% (最新基准利率1.1倍)",
-  "3.9% (最新基准利率1.2倍)",
-  "4.23% (最新基准利率1.3倍)",
+export const providentFundPeriodOptions = [
+  {
+    label: "1年",
+    value: 1,
+  },
+  {
+    label: "2年",
+    value: 2,
+  },
+  {
+    label: "3年",
+    value: 3,
+  },
+  {
+    label: "4年",
+    value: 4,
+  },
+  {
+    label: "5年",
+    value: 5,
+  },
+  {
+    label: "6年",
+    value: 6,
+  },
+  {
+    label: "7年",
+    value: 7,
+  },
+  {
+    label: "8年",
+    value: 8,
+  },
+  {
+    label: "9年",
+    value: 9,
+  },
+  {
+    label: "10年",
+    value: 10,
+  },
+  {
+    label: "11年",
+    value: 11,
+  },
+  {
+    label: "12年",
+    value: 12,
+  },
+  {
+    label: "13年",
+    value: 13,
+  },
+  {
+    label: "14年",
+    value: 14,
+  },
+  {
+    label: "15年",
+    value: 15,
+  },
+  {
+    label: "16年",
+    value: 16,
+  },
+  {
+    label: "17年",
+    value: 17,
+  },
+  {
+    label: "18年",
+    value: 18,
+  },
+  {
+    label: "19年",
+    value: 19,
+  },
+  {
+    label: "20年",
+    value: 20,
+  },
+  {
+    label: "21年",
+    value: 21,
+  },
+  {
+    label: "22年",
+    value: 22,
+  },
+  {
+    label: "23年",
+    value: 23,
+  },
+  {
+    label: "24年",
+    value: 24,
+  },
+  {
+    label: "25年",
+    value: 25,
+  },
+  {
+    label: "26年",
+    value: 26,
+  },
+  {
+    label: "27年",
+    value: 27,
+  },
+  {
+    label: "28年",
+    value: 28,
+  },
+  {
+    label: "29年",
+    value: 29,
+  },
+  {
+    label: "30年",
+    value: 30,
+  },
+];
+
+export const providentFundInterestRateOptions = [
+  {
+    label: "3.25% (最新基准利率1倍)",
+    value: 0.0325,
+  },
+  {
+    label: "3.58% (最新基准利率1.1倍)",
+    value: 0.0358,
+  },
+  {
+    label: "3.9% (最新基准利率1.2倍)",
+    value: 0.039,
+  },
+  {
+    label: "4.23% (最新基准利率1.3倍)",
+    value: 0.0423,
+  },
+];
+
+export const businessLoanTermOptions = [
+  {
+    label: "1年",
+    value: 1,
+  },
+  {
+    label: "2年",
+    value: 2,
+  },
+  {
+    label: "3年",
+    value: 3,
+  },
+  {
+    label: "4年",
+    value: 4,
+  },
+  {
+    label: "5年",
+    value: 5,
+  },
+  {
+    label: "6年",
+    value: 6,
+  },
+  {
+    label: "7年",
+    value: 7,
+  },
+  {
+    label: "8年",
+    value: 8,
+  },
+  {
+    label: "9年",
+    value: 9,
+  },
+  {
+    label: "10年",
+    value: 10,
+  },
+  {
+    label: "11年",
+    value: 11,
+  },
+  {
+    label: "12年",
+    value: 12,
+  },
+  {
+    label: "13年",
+    value: 13,
+  },
+  {
+    label: "14年",
+    value: 14,
+  },
+  {
+    label: "15年",
+    value: 15,
+  },
+  {
+    label: "16年",
+    value: 16,
+  },
+  {
+    label: "17年",
+    value: 17,
+  },
+  {
+    label: "18年",
+    value: 18,
+  },
+  {
+    label: "19年",
+    value: 19,
+  },
+  {
+    label: "20年",
+    value: 20,
+  },
+  {
+    label: "21年",
+    value: 21,
+  },
+  {
+    label: "22年",
+    value: 22,
+  },
+  {
+    label: "23年",
+    value: 23,
+  },
+  {
+    label: "24年",
+    value: 24,
+  },
+  {
+    label: "25年",
+    value: 25,
+  },
+  {
+    label: "26年",
+    value: 26,
+  },
+  {
+    label: "27年",
+    value: 27,
+  },
+  {
+    label: "28年",
+    value: 28,
+  },
+  {
+    label: "29年",
+    value: 29,
+  },
+  {
+    label: "30年",
+    value: 30,
+  },
+];
+export const interestRateMethodOpttions = [
+  { label: "使用最新LPR", value: 0.043 },
+  { label: "使用旧版基准利率", value: 0.046 },
 ];

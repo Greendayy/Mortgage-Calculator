@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "../components/Modal";
 import Link from "next/link";
 import Picker from "../components/Picker";
@@ -106,10 +106,12 @@ export default function Home() {
     setSelectedLabelPrepayment(selectedOption.label);
     setCalculationValuePrepayment(selectedOption.value);
   };
-
+  //计算房屋总价
   const handlePickerSelectPrepayment = (selectedOption) => {
     handleSelectPrepayment(selectedOption);
     setSelectedLabelPrepayment(selectedOption.label);
+    setCalculationValuePrepayment(selectedOption.value);
+    setTotalPrice(loanAmount + loanAmount * selectedOption.value);
   };
   console.log("calculationValuePrepayment ", calculationValuePrepayment);
 
@@ -150,39 +152,64 @@ export default function Home() {
     handleSelectInterestRateMethod(selectedOption);
     setSelectedLabelInterestRateMethod(selectedOption.label);
   };
+  //input
+  const [loanAmount, setLoanAmount] = useState(0);
+  const [providentFundLoanAmount, setProvidentFundLoanAmount] = useState(0);
+  const [businessLoanAmount, setBusinessLoanAmount] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  function calculateBusinessLoanAmount() {
+    let businessLoanAmount = loanAmount;
+    if (providentFundLoanAmount) {
+      businessLoanAmount = loanAmount - providentFundLoanAmount;
+    }
+    setBusinessLoanAmount(businessLoanAmount);
+  }
+
   //calc需现实项目：
   //房屋总价 totalPrice
   //贷款金额 loanAmount
-  //首付 prepayment
+  //首付选项 prepayment
   //公积金年限 providentFundPeriod
-  //公积金利率providentFundInterestRate
-  //公积金贷金额 providentFundLoanAmount
-  //公积金贷年限 providentFundLoanPeriod
-  //公积金贷利率 providentFundLoanInterestRate
-  //商业贷金额 businessLoanAmount
-  //商业贷年限 businessLoanTerm
+  //公积金利率 providentFundInterestRate
+  //公积金金额 providentFundLoanAmount
+  //商贷金额 businessLoanAmount
+  //商贷年限 businessLoanTerm
   //利率方式 interestRateMethod
-  //商业贷利率 businessLoanInterestRate
-  //首付款 = 房屋售价 × 首付比例 payInAdvance = totalPrice * downPaymentRatio
-  const [principal, setPrincipal] = useState("");
-  const [interest, setInterest] = useState("");
-  const [term, setTerm] = useState("");
-  const [totalPrice, setTotalPrice] = useState("");
+  //商贷利率 businessLoanInterestRate
+  //基点 basePoint
 
+  //公积金贷年限 providentFundLoanPeriod//
+  //公积金贷利率 providentFundLoanInterestRate//
+  //首付款 = 房屋售价 × 首付比例 payInAdvance = totalPrice * downPaymentRatio
+  //等额本息：月还本息 = 贷款本金 x 月利率 x (1 + 月利率) ^ 还款月数 / ((1 + 月利率) ^ 还款月数 - 1)
+  const payInAdvance = totalPrice - loanAmount;
+  const providentFundMonthly =
+    (providentFundLoanAmount *
+      10000 *
+      calculationValueProvidentFundInterestRate *
+      (1 + calculationValueProvidentFundInterestRate)) ^
+    ((calculationValueProvidentFundPeriod * 12) /
+      ((1 + calculationValueProvidentFundInterestRate) ^
+        (calculationValueProvidentFundPeriod * 12 - 1)));
+  console.log("providentFundMonthly", providentFundMonthly);
+  const businessLoanMonthly =
+    (businessLoanAmount *
+      10000 *
+      calculationValueInterestRateMethod *
+      (1 + calculationValueInterestRateMethod)) ^
+    ((calculationValueBusinessLoanTerm * 12) /
+      ((1 + calculationValueInterestRateMethod) ^
+        (calculationValueBusinessLoanTerm * 12 - 1)));
+  console.log("businessLoanMonthly", businessLoanMonthly);
   const [result, setResult] = useState("");
 
   const calculatePayment = () => {
-    // if (!principal || !interest || !term) {
-    //   setResult("Please fill in all fields.");
-    //   return;
-    // }
-    const p = parseFloat(principal);
-    const i = parseFloat(interest) / 100 / 12;
-    const n = parseFloat(term) * 12;
-    const housePrice = parseFloat(totalPrice);
-
-    const payment = (p * i) / (1 - Math.pow(1 + i, -n));
-    setResult(payment.toFixed(2));
+    if (!providentFundLoanAmount) {
+      setResult(businessLoanMonthly);
+    } else {
+      setResult(providentFundMonthly + businessLoanMonthly);
+    }
   };
 
   return (
@@ -204,17 +231,25 @@ export default function Home() {
                 </p>
               </div>
               <p className={styles.p}>
-                首付30%、公积金贷0万·30年·利率3.25%、商业贷10万·30年·利率4.65%、等额本息
+                首付{selectedLabelPrepayment}
+                、公积金贷{providentFundLoanAmount}万·
+                {selectedLabelProvidentFundPeriod}·利率
+                {calculationValueProvidentFundInterestRate*100}%、商业贷
+                {businessLoanAmount}万·{calculationValueBusinessLoanTerm}
+                年·利率4.65%、等额本息
               </p>
             </div>
             <div className={styles.detail}>
               <div>
                 <p>首付款</p>
-                <h2>--</h2>
+                <h2>
+                  {payInAdvance}
+                  <span>万</span>
+                </h2>
               </div>
               <div className={styles.monthly}>
                 <p>每月应还(等额本息)</p>
-                {result && <h2>{result}</h2>}
+                {result && <h2>{result}<span>元</span></h2>}
                 {/* <h2>516元</h2> */}
                 <p>
                   <Link href="/detail">{"对比等额本金月供 >"}</Link>
@@ -251,19 +286,24 @@ export default function Home() {
           style={{ display: activeTab === "tab1" ? "block" : "none" }}
         >
           <div className={styles.form}>
-            <label className={styles.label} htmlFor="principal">
+            <label className={styles.label} htmlFor="loanAmount">
               贷款金额{" "}
             </label>
             <div className={styles.input}>
               <input
                 className={styles.input}
                 type="num"
-                name="dkje"
-                defaultValue={0}
+                name="loanAmount"
+                id="loanAmount"
+                placeholder="0"
+                value={loanAmount}
+                onChange={(e) => setLoanAmount(Number(e.target.value))}
+                onBlur={() =>
+                  setTotalPrice(
+                    loanAmount + loanAmount * calculationValuePrepayment
+                  )
+                }
                 required
-                id="principal"
-                value={principal}
-                onChange={(e) => setPrincipal(e.target.value)}
               />
               <span className={styles.unit}>万</span>
             </div>
@@ -285,9 +325,8 @@ export default function Home() {
                 type="num"
                 name="totalPrice"
                 id="totalPrice"
-                defaultValue={0}
+                placeholder="0"
                 value={totalPrice}
-                onChange={(e) => setTotalPrice(e.target.value)}
               />
               <span className={styles.unit}>万</span>
             </div>
@@ -301,13 +340,11 @@ export default function Home() {
               <input
                 className={styles.input}
                 type="mun"
-                name="sfxz"
+                name="prepayment"
                 id="prepayment"
-                // defaultValue={0.03}
+                // defaultValue={3}
                 placeholder={
-                  selectedLabelPrepayment
-                    ? selectedLabelPrepayment
-                    : "30%（0万）"
+                  selectedLabelPrepayment ? selectedLabelPrepayment : "30%"
                 }
                 onClick={openPickerPrepayment}
                 calcValue={
@@ -327,17 +364,19 @@ export default function Home() {
           <hr className={styles.hr} />
 
           <div className={styles.form}>
-            <label className={styles.label} htmlFor="name">
+            <label className={styles.label} htmlFor="loanAmount">
               贷款金额{" "}
             </label>
             <div className={styles.input}>
               <input
                 className={styles.input}
                 type="num"
-                name="dkje"
+                name="loanAmount"
                 id="loanAmount"
-                defaultValue={0}
                 placeholder="0"
+                value={loanAmount}
+                onChange={(e) => setLoanAmount(Number(e.target.value))}
+                onBlur={calculateBusinessLoanAmount}
               />
               <span className={styles.unit}>万</span>
             </div>
@@ -345,7 +384,7 @@ export default function Home() {
         </div>
         <hr className={styles.hr} />
         {/* 贷款方式·表头 */}
-        <nav className={styles.tab} style={{ marginTop: '1rem' }}>
+        <nav className={styles.tab} style={{ marginTop: "1rem" }}>
           <h1 className={styles.tabTittle}>贷款方式</h1>
           <div className={styles.tabButton}>
             <button
@@ -375,16 +414,20 @@ export default function Home() {
           style={{ display: activeTab2 === "tab3" ? "block" : "none" }}
         >
           <div className={styles.form}>
-            <label className={styles.label} htmlFor="name">
+            <label className={styles.label} htmlFor="providentFundLoanAmount">
               公积金金额{" "}
             </label>
             <div className={styles.input}>
               <input
                 className={styles.input}
                 type="num"
-                name="gjjje"
-                id="gjjje"
-                defaultValue={0}
+                name="providentFundLoanAmount"
+                id="providentFundLoanAmount"
+                value={providentFundLoanAmount}
+                onChange={(e) =>
+                  setProvidentFundLoanAmount(Number(e.target.value))
+                }
+                onBlur={calculateBusinessLoanAmount}
                 placeholder="0"
               />
               <span className={styles.unit}>万</span>
@@ -400,7 +443,7 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="gjjnx"
-                id="gjjnx"
+                id="providentFundPeriod"
                 placeholder={
                   selectedLabelProvidentFundPeriod
                     ? selectedLabelProvidentFundPeriod
@@ -433,7 +476,7 @@ export default function Home() {
                 className={styles.input}
                 type="text"
                 name="gjjlv"
-                id="gjjlv"
+                id="providentFundInterestRate"
                 placeholder={
                   selectedLabelProvidentFundInterestRate
                     ? selectedLabelProvidentFundInterestRate
@@ -458,16 +501,17 @@ export default function Home() {
           )}
           <hr className={styles.hr} />
           <div className={styles.form}>
-            <label className={styles.label} htmlFor="name">
+            <label className={styles.label} htmlFor="businessLoanAmount">
               商贷金额{" "}
             </label>
             <div className={styles.input}>
               <input
                 className={styles.input}
                 type="num"
-                name="sdje"
-                id="sdje"
-                defaultValue="0"
+                name="businessLoanAmount"
+                id="businessLoanAmount"
+                value={businessLoanAmount}
+                disabled
                 placeholder="0"
               />
               <span className={styles.unit}>万</span>
@@ -483,7 +527,7 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="sdnx"
-                id="term"
+                id="businessLoanTerm"
                 placeholder={
                   selectedLabelBusinessLoanTerm
                     ? selectedLabelBusinessLoanTerm
@@ -516,7 +560,7 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="llfs"
-                id="interest"
+                id="interestRateMethod"
                 placeholder={
                   selectedLabelInterestRateMethod
                     ? selectedLabelInterestRateMethod
@@ -592,7 +636,7 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="jd"
-                id="jd"
+                id="basePoint"
                 placeholder="0"
                 defaultValue={0}
               />
@@ -609,7 +653,7 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="sdll"
-                id="sdll"
+                id="businessLoanInterestRate"
                 placeholder="4.65%+0‱="
                 defaultValue=""
               />
@@ -635,7 +679,7 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="sdnx"
-                id="sdnx"
+                id="businessLoanTerm"
                 placeholder={
                   selectedLabelBusinessLoanTerm
                     ? selectedLabelBusinessLoanTerm
@@ -669,7 +713,7 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="llfs"
-                id="interest"
+                id="interestRateMethod"
                 placeholder={
                   selectedLabelInterestRateMethod
                     ? selectedLabelInterestRateMethod
@@ -744,7 +788,7 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="jd"
-                id="jd"
+                id="basePoint"
                 placeholder="0"
                 defaultValue={0}
               />
@@ -786,7 +830,7 @@ export default function Home() {
                 className={styles.input}
                 type="num"
                 name="gjjnx"
-                id="gjjnx"
+                id="providentFundPeriod"
                 placeholder={
                   selectedLabelProvidentFundPeriod
                     ? selectedLabelProvidentFundPeriod
@@ -819,7 +863,7 @@ export default function Home() {
                 className={styles.input}
                 type="text"
                 name="gjjlv"
-                id="gjjlv"
+                id="providentFundInterestRate"
                 placeholder={
                   selectedLabelProvidentFundInterestRate
                     ? selectedLabelProvidentFundInterestRate

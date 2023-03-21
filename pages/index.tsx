@@ -11,16 +11,15 @@ import {
   businessLoanTermOptions,
   interestRateMethodOpttions,
 } from "../db/pickerData";
-import Image from "next/image";
 
 export default function Home() {
   // tab切换标签
   const [activeTab, setActiveTab] = useState("tab1");
   const [activeTab2, setActiveTab2] = useState("tab3");
-  function handleTabClick(tabName) {
+  function handleTabClick(tabName: string) {
     setActiveTab(tabName);
   }
-  function handleTabClick2(tabName) {
+  function handleTabClick2(tabName: string) {
     setActiveTab2(tabName);
   }
 
@@ -103,12 +102,18 @@ export default function Home() {
     setCalculationValueInterestRateMethod,
   ] = useState(0.034);
 
-  const handleSelectPrepayment = (selectedOption) => {
+  const handleSelectPrepayment = (selectedOption: {
+    label: string;
+    value: number;
+  }) => {
     setSelectedLabelPrepayment(selectedOption.label);
     setCalculationValuePrepayment(selectedOption.value);
   };
   //计算房屋总价
-  const handlePickerSelectPrepayment = (selectedOption) => {
+  const handlePickerSelectPrepayment = (selectedOption: {
+    label: string;
+    value: number;
+  }) => {
     handleSelectPrepayment(selectedOption);
     setSelectedLabelPrepayment(selectedOption.label);
     setCalculationValuePrepayment(selectedOption.value);
@@ -116,40 +121,64 @@ export default function Home() {
   };
   console.log("calculationValuePrepayment ", calculationValuePrepayment);
 
-  const handleSelectProvidentFundPeriod = (selectedOption) => {
+  const handleSelectProvidentFundPeriod = (selectedOption: {
+    label: string;
+    value: number;
+  }) => {
     setSelectedLabelProvidentFundPeriod(selectedOption.label);
     setCalculationValueProvidentFundPeriod(selectedOption.value);
   };
 
-  const handlePickerSelectProvidentFundPeriod = (selectedOption) => {
+  const handlePickerSelectProvidentFundPeriod = (selectedOption: {
+    label: string;
+    value: number;
+  }) => {
     handleSelectProvidentFundPeriod(selectedOption);
     setSelectedLabelProvidentFundPeriod(selectedOption.label);
   };
-  const handleSelectProvidentFundInterestRate = (selectedOption) => {
+  const handleSelectProvidentFundInterestRate = (selectedOption: {
+    label: string;
+    value: number;
+  }) => {
     setSelectedLabelProvidentFundInterestRate(selectedOption.label);
     setCalculationValueProvidentFundInterestRate(selectedOption.value);
   };
 
-  const handlePickerSelectProvidentFundInterestRate = (selectedOption) => {
+  const handlePickerSelectProvidentFundInterestRate = (selectedOption: {
+    label: string;
+    value: number;
+  }) => {
     handleSelectProvidentFundInterestRate(selectedOption);
     setSelectedLabelProvidentFundInterestRate(selectedOption.label);
   };
 
-  const handleSelectBusinessLoanTerm = (selectedOption) => {
+  const handleSelectBusinessLoanTerm = (selectedOption: {
+    label: string;
+    value: number;
+  }) => {
     setSelectedLabelBusinessLoanTerm(selectedOption.label);
     setCalculationValueBusinessLoanTerm(selectedOption.value);
   };
 
-  const handlePickerSelectBusinessLoanTerm = (selectedOption) => {
+  const handlePickerSelectBusinessLoanTerm = (selectedOption: {
+    label: string;
+    value: number;
+  }) => {
     handleSelectBusinessLoanTerm(selectedOption);
     setSelectedLabelBusinessLoanTerm(selectedOption.label);
   };
-  const handleSelectInterestRateMethod = (selectedOption) => {
+  const handleSelectInterestRateMethod = (selectedOption: {
+    label: string;
+    value: number;
+  }) => {
     setSelectedLabelInterestRateMethod(selectedOption.label);
     setCalculationValueInterestRateMethod(selectedOption.value);
   };
 
-  const handlePickerSelectInterestRateMethod = (selectedOption) => {
+  const handlePickerSelectInterestRateMethod = (selectedOption: {
+    label: string;
+    value: number;
+  }) => {
     handleSelectInterestRateMethod(selectedOption);
     setSelectedLabelInterestRateMethod(selectedOption.label);
   };
@@ -207,9 +236,9 @@ export default function Home() {
 
   const calculatePayment = () => {
     if (!providentFundLoanAmount) {
-      setResult(businessLoanMonthly);
+      setResult(businessLoanMonthly.toFixed(0));
     } else {
-      setResult(providentFundMonthly + businessLoanMonthly);
+      setResult((providentFundMonthly + businessLoanMonthly).toFixed(0));
     }
   };
 
@@ -353,7 +382,7 @@ export default function Home() {
                   selectedLabelPrepayment ? selectedLabelPrepayment : "30%"
                 }
                 onClick={openPickerPrepayment}
-                calcValue={
+                data-calc-value={
                   calculationValuePrepayment ? calculationValuePrepayment : 0.03
                 }
               />
@@ -456,7 +485,7 @@ export default function Home() {
                     : "30年"
                 }
                 onClick={openPickerProvidentFundPeriod}
-                calcValue={
+                data-calc-value={
                   calculationValueProvidentFundPeriod
                     ? calculationValueProvidentFundPeriod
                     : 30
@@ -489,7 +518,7 @@ export default function Home() {
                     : "3.25%(最新基准利率1倍)"
                 }
                 onClick={openPickerProvidentFundInterestRate}
-                calcValue={
+                data-calc-value={
                   calculationValueProvidentFundInterestRate
                     ? calculationValueProvidentFundInterestRate
                     : 0.0325
@@ -540,7 +569,7 @@ export default function Home() {
                     : "30年"
                 }
                 onClick={openPickerBusinessLoanTerm}
-                calcValue={
+                data-calc-value={
                   calculationValueBusinessLoanTerm
                     ? calculationValueBusinessLoanTerm
                     : 30
@@ -573,7 +602,7 @@ export default function Home() {
                     : "使用最新LPR"
                 }
                 onClick={openPickerInterestRateMethod}
-                calcValue={
+                data-calc-value={
                   calculationValueInterestRateMethod
                     ? calculationValueInterestRateMethod
                     : 0.034
@@ -694,7 +723,7 @@ export default function Home() {
                     : "30年"
                 }
                 onClick={openPickerBusinessLoanTerm}
-                calcValue={
+                data-calc-value={
                   calculationValueBusinessLoanTerm
                     ? calculationValueBusinessLoanTerm
                     : 30
@@ -728,7 +757,7 @@ export default function Home() {
                     : "使用最新LPR"
                 }
                 onClick={openPickerInterestRateMethod}
-                calcValue={
+                data-calc-value={
                   calculationValueInterestRateMethod
                     ? calculationValueInterestRateMethod
                     : 0.034
@@ -847,7 +876,7 @@ export default function Home() {
                     : "30年"
                 }
                 onClick={openPickerProvidentFundPeriod}
-                calcValue={
+                data-calc-value={
                   calculationValueProvidentFundPeriod
                     ? calculationValueProvidentFundPeriod
                     : 30
@@ -880,7 +909,7 @@ export default function Home() {
                     : "3.25%(最新基准利率1倍)"
                 }
                 onClick={openPickerProvidentFundInterestRate}
-                calcValue={
+                data-calc-value={
                   calculationValueProvidentFundInterestRate
                     ? calculationValueProvidentFundInterestRate
                     : 0.0325

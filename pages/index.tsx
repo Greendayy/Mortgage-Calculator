@@ -18,9 +18,11 @@ export default function Home() {
   const [activeTab2, setActiveTab2] = useState("tab3");
   function handleTabClick(tabName: string) {
     setActiveTab(tabName);
+    setShowCard(false);
   }
   function handleTabClick2(tabName: string) {
     setActiveTab2(tabName);
+    setShowCard(false);
   }
 
   //overlay modal popup
@@ -213,23 +215,24 @@ export default function Home() {
   //公积金贷利率 providentFundLoanInterestRate//
   //首付款 = 房屋售价 × 首付比例 payInAdvance = totalPrice * downPaymentRatio
   //等额本息：月还本息 = 贷款本金 x 月利率 x (1 + 月利率) ^ 还款月数 / ((1 + 月利率) ^ 还款月数 - 1)
+  //每月应还款= （贷款本金×月利率× (1+月利率)^还款月数）/ （(1+月利率)^还款月数 - 1）
   const payInAdvance = totalPrice - loanAmount;
   const providentFundMonthly =
     (providentFundLoanAmount *
       10000 *
-      calculationValueProvidentFundInterestRate *
-      (1 + calculationValueProvidentFundInterestRate)) ^
+      (calculationValueProvidentFundInterestRate / 12) *
+      (1 + calculationValueProvidentFundInterestRate / 12)) ^
     ((calculationValueProvidentFundPeriod * 12) /
-      ((1 + calculationValueProvidentFundInterestRate) ^
+      ((1 + calculationValueProvidentFundInterestRate / 12) ^
         (calculationValueProvidentFundPeriod * 12 - 1)));
   console.log("providentFundMonthly", providentFundMonthly);
   const businessLoanMonthly =
     (businessLoanAmount *
       10000 *
-      calculationValueInterestRateMethod *
-      (1 + calculationValueInterestRateMethod)) ^
+      (calculationValueInterestRateMethod / 12) *
+      (1 + calculationValueInterestRateMethod / 12)) ^
     ((calculationValueBusinessLoanTerm * 12) /
-      ((1 + calculationValueInterestRateMethod) ^
+      ((1 + calculationValueInterestRateMethod / 12) ^
         (calculationValueBusinessLoanTerm * 12 - 1)));
   console.log("businessLoanMonthly", businessLoanMonthly);
   const [result, setResult] = useState("");
@@ -255,7 +258,9 @@ export default function Home() {
           <section className={styles.calcResult}>
             <div className={styles.history}>
               <div>
-                <h1>房屋总价 {totalPrice ? `${totalPrice} 万` : "-- 万"} </h1>
+                <h1>
+                  房屋总价 {activeTab === "tab2" ? `${totalPrice} 万` : "-- 万"}{" "}
+                </h1>
                 <p>
                   <Link href="/history">{"查看历史 >"}</Link>
                 </p>
@@ -273,7 +278,7 @@ export default function Home() {
               <div>
                 <p>首付款</p>
                 <h2>
-                  {payInAdvance}
+                  {activeTab === "tab2" ? payInAdvance : " -- "}
                   <span>万</span>
                 </h2>
               </div>

@@ -11,6 +11,7 @@ import {
   businessLoanTermOptions,
   interestRateMethodOpttions,
 } from "../db/pickerData";
+import Image from "next/image";
 
 export default function Home() {
   // tab切换标签
@@ -234,7 +235,7 @@ export default function Home() {
                 首付{selectedLabelPrepayment}
                 、公积金贷{providentFundLoanAmount}万·
                 {selectedLabelProvidentFundPeriod}·利率
-                {calculationValueProvidentFundInterestRate*100}%、商业贷
+                {calculationValueProvidentFundInterestRate * 100}%、商业贷
                 {businessLoanAmount}万·{calculationValueBusinessLoanTerm}
                 年·利率4.65%、等额本息
               </p>
@@ -249,7 +250,12 @@ export default function Home() {
               </div>
               <div className={styles.monthly}>
                 <p>每月应还(等额本息)</p>
-                {result && <h2>{result}<span>元</span></h2>}
+                {result && (
+                  <h2>
+                    {result}
+                    <span>元</span>
+                  </h2>
+                )}
                 {/* <h2>516元</h2> */}
                 <p>
                   <Link href="/detail">{"对比等额本金月供 >"}</Link>
@@ -592,6 +598,7 @@ export default function Home() {
                 className={styles.img}
                 src="question.svg"
                 onClick={openModal1}
+                alt={""}
               />
               {showModal1 && (
                 <Modal
@@ -622,6 +629,7 @@ export default function Home() {
                 className={styles.img}
                 src="question.svg"
                 onClick={openModal2}
+                alt={""}
               />
               {showModal2 && (
                 <Modal
@@ -744,6 +752,7 @@ export default function Home() {
                 className={styles.img}
                 src="question.svg"
                 onClick={openModal1}
+                alt={""}
               />
               {showModal1 && (
                 <Modal
@@ -774,6 +783,7 @@ export default function Home() {
                 className={styles.img}
                 src="question.svg"
                 onClick={openModal2}
+                alt={""}
               />
               {showModal2 && (
                 <Modal

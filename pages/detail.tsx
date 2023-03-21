@@ -1,12 +1,13 @@
+import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Detail.module.css";
 
 export default function Detail() {
   return (
     <div className={styles.detail}>
-      <header>
+      <Head>
         <title>房贷计算器-还款详情</title>
-      </header>
+      </Head>
       <nav className={styles.nav}>
         <p>
           <Link href="/">{"ᐸ"}</Link>

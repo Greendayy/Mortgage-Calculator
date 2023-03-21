@@ -1,13 +1,13 @@
 import Link from "next/link";
 import styles from "../styles/History.module.css";
-import { Head } from "next/document";
+import Head from "next/head";
 
 export default function History() {
   return (
     <>
-      <head>
+      <Head>
         <title>房贷计算器-历史记录</title>
-      </head>
+      </Head>
       <nav className={styles.nav}>
         <p>
           <Link href="/">{"ᐸ"}</Link>

@@ -293,7 +293,7 @@ export const businessLoanTermOptions = [
     value: 30,
   },
 ];
-export const interestRateMethodOpttions = [
-  { label: "使用最新LPR", value: 0.043 },
-  { label: "使用旧版基准利率", value: 0.046 },
+export const interestRateMethodOptions = [
+  { label: "使用最新LPR", value: 0.0465 },
+  { label: "使用旧版基准利率", value: 0.049 },
 ];

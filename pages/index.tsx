@@ -9,7 +9,7 @@ import {
   providentFundPeriodOptions,
   providentFundInterestRateOptions,
   businessLoanTermOptions,
-  interestRateMethodOpttions,
+  interestRateMethodOptions,
 } from "../db/pickerData";
 
 export default function Home() {
@@ -266,8 +266,8 @@ export default function Home() {
                 </p>
               </div>
               <p className={styles.p}>
-                首付{selectedLabelPrepayment}
-                、公积金贷{providentFundLoanAmount}万·
+                首付{calculationValuePrepayment * 100}% 、公积金贷
+                {providentFundLoanAmount}万·
                 {selectedLabelProvidentFundPeriod}·利率
                 {calculationValueProvidentFundInterestRate * 100}%、商业贷
                 {businessLoanAmount}万·{calculationValueBusinessLoanTerm}
@@ -382,7 +382,6 @@ export default function Home() {
                 type="mun"
                 name="prepayment"
                 id="prepayment"
-                // defaultValue={3}
                 placeholder={
                   selectedLabelPrepayment ? selectedLabelPrepayment : "30%"
                 }
@@ -620,7 +619,7 @@ export default function Home() {
             <Picker
               onClose={closePickerInterestRateMethod}
               onSelect={handlePickerSelectInterestRateMethod}
-              options={interestRateMethodOpttions}
+              options={interestRateMethodOptions}
             />
           )}
           <hr className={styles.hr} />
@@ -775,7 +774,7 @@ export default function Home() {
             <Picker
               onClose={closePickerInterestRateMethod}
               onSelect={handlePickerSelectInterestRateMethod}
-              options={interestRateMethodOpttions}
+              options={interestRateMethodOptions}
             />
           )}
           <hr className={styles.hr} />

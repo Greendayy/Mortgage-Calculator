@@ -18,6 +18,7 @@ body{
 html {
   font-size: 32px;
   font-family: -apple-system-font,Helvetica Neue,sans-serif;
+  padding-bottom:env(safe-area-inset-bottom);
 }
 body{
   box-sizing: border-box;

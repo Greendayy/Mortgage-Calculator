@@ -15,23 +15,3 @@ body{
   font-family: -apple-system-font,Helvetica Neue,sans-serif;
 
 ======= */
-html {
-  font-size: 32px;
-  font-family: -apple-system-font,Helvetica Neue,sans-serif;
-  padding-bottom:env(safe-area-inset-bottom);
-}
-body{
-  box-sizing: border-box;
-  margin: 0 auto;
-  line-height: 1.6;
-  background-color: #ffffff;
-}
-
-.tablinks.active,
-.tablinks:focus,
-.tablinks:active{
-  color: #1fb081;
-  text-decoration: underline;
-  text-underline-offset: 0.1rem;
-  text-decoration-thickness: 0.1rem;
-}

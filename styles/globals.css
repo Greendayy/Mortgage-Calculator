@@ -1,17 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* <<<<<<< HEAD
+
+:root:root {
+  --adm-color-primary: #23c993;
+  --adm-color-selected: #1fb081;
+  --adm-color-grey: #979b9e;
+  --adm-font-family: -apple-system-font,Helvetica Neue,sans-serif;
+
+}
+
 
 html{
   font-family: -apple-system-font,Helvetica Neue,sans-serif;
-  font-size: 16px;
+  font-size: 32px;
 }
 
 body{
   box-sizing: border-box;
   margin: 0px;
-  line-height: 1.8rem;
+  line-height: 0.8rem;
   font-family: -apple-system-font,Helvetica Neue,sans-serif;
-
-======= */
+  height: 100vh;
+}

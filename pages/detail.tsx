@@ -1,21 +1,24 @@
+"use client";
 import { Card, NavBar, Toast } from "antd-mobile";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
-export default function Detail() {
-  const back = () => {
-    <Link href="/">{""}</Link>;
-  };
+export default function detail() {
+  const router = useRouter();
+
+  function handleBack() {
+    router.push("/");
+  }
   const tost = () =>
     Toast.show({
-      content: "点击了返回区域",
+      content: "月供将以等额本息的形式展现",
       duration: 1000,
     });
   return (
     <div>
-      <head>
+      <header>
         <title>还款详情</title>
-      </head>
-      <NavBar onBack={back}>还款详情</NavBar>
+      </header>
+      <NavBar onBack={handleBack}>还款详情</NavBar>
       <section>
         <h1>贷款总额{10}万</h1>
         <p>
@@ -60,13 +63,20 @@ export default function Detail() {
                     type="radio"
                     id="debx"
                     name="drone"
-                    value="huey"
+                    value="debx"
+                    onClick={tost}
                     checked
                   />
                   <label htmlFor="debx">优先看等额本息</label>
                 </td>
                 <td>
-                  <input type="radio" id="debj" name="drone" value="huey" />
+                  <input
+                    type="radio"
+                    id="debj"
+                    name="drone"
+                    value="dkbj"
+                    onClick={tost}
+                  />
                   <label htmlFor="debj">优先看等额本金</label>
                 </td>
               </tr>

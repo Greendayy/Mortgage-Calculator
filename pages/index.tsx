@@ -17,7 +17,7 @@ import { RightOutline } from "antd-mobile-icons";
 import { PickerDate } from "antd-mobile/es/components/date-picker/util";
 import Link from "next/link";
 
-export default function Home() {
+export default function home() {
   return (
     <div>
       <header>
@@ -26,8 +26,10 @@ export default function Home() {
 
       <section>
         <Card
-          className={styles.historyCard}
-          title={<div style={{ fontWeight: "normal" }}>房屋总价{}万</div>}
+          style={{ padding: 0 }}
+          headerClassName={styles.historyCardHeader}
+          bodyClassName={styles.historyCardBody}
+          title={<div style={{ fontWeight: "normal" }}>房屋总价{"--"}万</div>}
           extra={
             <div
               style={{
@@ -37,7 +39,7 @@ export default function Home() {
               }}
             >
               查看历史
-              <Link href="/history">
+              <Link href="/history" style={{ color: "#fff" }}>
                 <RightOutline />
               </Link>
             </div>

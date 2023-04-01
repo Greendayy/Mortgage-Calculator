@@ -1,22 +1,22 @@
 import Link from "next/link";
 import styles from "../styles/History.module.css";
-import { NavBar, Toast } from "antd-mobile";
+("use client");
+import { NavBar } from "antd-mobile";
+import { useRouter } from "next/router";
 
-export default function History() {
-  const back = () => {
-    <Link href="/">{""}</Link>;
-  };
-  // const back = () =>
-  //   Toast.show({
-  //     content: "点击了返回区域",
-  //     duration: 1000,
-  //   });
+export default function history() {
+  const router = useRouter();
+
+  function handleBack() {
+    router.push("/");
+  }
+
   return (
     <div>
-      <head>
+      <header>
         <title>历史记录</title>
-      </head>
-      <NavBar onBack={back}>历史记录</NavBar>
+      </header>
+      <NavBar onBack={handleBack}>历史记录</NavBar>
       <table>
         <tbody>
           <tr>

@@ -1,5 +1,8 @@
-.historyCard{
-    background-color: #23c993;
-    color:23c993;
-    border-radius: 0%;
+.historyCardBody{
+    background: #23c993;
+    color:white;
+}
+.historyCardHeader{
+    background: #23c993;
+    color:white;
 }

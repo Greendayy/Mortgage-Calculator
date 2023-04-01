@@ -15,6 +15,7 @@ import {
 } from "antd-mobile";
 import { RightOutline } from "antd-mobile-icons";
 import { PickerDate } from "antd-mobile/es/components/date-picker/util";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -36,7 +37,9 @@ export default function Home() {
               }}
             >
               查看历史
-              <RightOutline />
+              <Link href="/history">
+                <RightOutline />
+              </Link>
             </div>
           }
         >
@@ -79,7 +82,9 @@ export default function Home() {
                 }}
               >
                 对比{"等额本金"}月供
-                <RightOutline />
+                <Link href="/detail">
+                  <RightOutline />
+                </Link>
               </p>
             </div>
           }

@@ -1,8 +1,30 @@
-.historyCardBody{
-    background: #23c993;
-    color:white;
-}
+
 .historyCardHeader{
     background: #23c993;
     color:white;
+    border-bottom: solid 0px; 
+    padding: 0.8rem 0.6rem 0rem 0.6rem!important;
+}
+.historyCardHeader:not(:last-child){
+    border-bottom: none!important; 
+}
+.historyCardBody{
+    background: #23c993;
+    color:white;
+    border: none; 
+    padding: 0!important;
+    width:100%;
+    position: absolute;
+    z-index: -1;
+}
+.detailCard{
+    width: 90%;
+    margin: 0 auto; 
+    position: relative;
+    top:2rem;
+    margin-bottom:2.5rem;
+    box-shadow: rgb(231, 235, 238) 0px 1px 5px 0px;
+    border-radius: 0.1rem!important;
+    padding: 0.3rem 0.8rem!important;
+    font-size: 0.3rem!important;
 }

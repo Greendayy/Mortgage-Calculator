@@ -26,16 +26,21 @@ export default function home() {
 
       <section>
         <Card
-          style={{ padding: 0 }}
+          style={{ padding: 0, border: "none" }}
           headerClassName={styles.historyCardHeader}
           bodyClassName={styles.historyCardBody}
-          title={<div style={{ fontWeight: "normal" }}>房屋总价{"--"}万</div>}
+          title={
+            <div style={{ fontWeight: "bold", fontSize: "0.67rem" }}>
+              房屋总价{" -- "}万
+            </div>
+          }
           extra={
             <div
               style={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                fontSize: "0.46rem",
               }}
             >
               查看历史
@@ -45,16 +50,24 @@ export default function home() {
             </div>
           }
         >
-          <text className={styles.content}>
+          <p
+            style={{
+              fontSize: "0.46rem",
+              padding: "0.3rem 0.6rem 2.5rem 0.6rem!important",
+              lineHeight: "0.6rem",
+            }}
+          >
             首付{"--"},公积金贷{"-"}万·{"-"}年·{"-"}利率，商业贷{"-"}万·{"-"}年·
             {"-"}
             利率、等额本息&等额本金
-          </text>
+          </p>
         </Card>
         <Card
+          className={styles.detailCard}
           title={
-            <div style={{ fontWeight: "normal" }}>
-              首付款 <p>{"--"}</p>
+            <div>
+              首付款{" "}
+              <p style={{ fontWeight: "bold", fontSize: "0.67rem" }}>{"--"}</p>
             </div>
           }
           extra={
@@ -71,10 +84,16 @@ export default function home() {
                   display: "flex",
                   justifyContent: "end",
                   alignItems: "center",
+                  fontSize: "0.67rem",
+                  fontWeight: "bold",
                 }}
               >
                 {516}
-                <figcaption>元</figcaption>
+                <figcaption
+                  style={{ fontSize: "0.3rem", paddingTop: "0.2rem" }}
+                >
+                  元
+                </figcaption>
               </figure>
               <p
                 style={{
@@ -84,7 +103,7 @@ export default function home() {
                 }}
               >
                 对比{"等额本金"}月供
-                <Link href="/detail">
+                <Link href="/detail" style={{ color: "#999" }}>
                   <RightOutline />
                 </Link>
               </p>

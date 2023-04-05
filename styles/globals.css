@@ -7,7 +7,9 @@
   --adm-color-selected: #1fb081;
   --adm-color-grey: #979b9e;
   --adm-font-family: -apple-system-font,Helvetica Neue,sans-serif;
-
+  --active-line-color:#1fb081!important;
+  --active-title-color:#1fb081!important;
+  --title-font-size:0.1rem;
 }
 
 
@@ -23,3 +25,8 @@ body{
   font-family: -apple-system-font,Helvetica Neue,sans-serif;
   height: 100vh;
 }
+/* :global{
+  .amd-tabs-tab{
+    font-size: 16px;
+  }
+} */

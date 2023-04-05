@@ -114,7 +114,12 @@ export default function home() {
       <main>
         <section>
           <Tabs defaultActiveKey="adkze">
-            <Tabs.Tab title="计算方式" key="jsfs" disabled />
+            <Tabs.Tab
+              className={styles.historyFormTabTitle}
+              title="计算方式"
+              key="jsfs"
+              disabled
+            />
 
             <Tabs.Tab title="按贷款总额" key="adkze">
               <Form layout="horizontal">
@@ -159,9 +164,14 @@ export default function home() {
             </Tabs.Tab>
           </Tabs>
         </section>
-        <section>
+        <section style={{ padding: "0 0 1.5rem 0" }}>
           <Tabs defaultActiveKey="zhd">
-            <Tabs.Tab title="贷款方式" key="dkfs" disabled />
+            <Tabs.Tab
+              className={styles.formTabTitle}
+              title="贷款方式"
+              key="dkfs"
+              disabled
+            />
 
             <Tabs.Tab title="组合贷" key="zhd">
               <Form layout="horizontal">
@@ -194,12 +204,16 @@ export default function home() {
                     {(value) =>
                       value
                         ? dayjs(value).format("YYYY-MM-DD")
-                        : "3.25%（最新基准利率1倍）"
+                        : "3.25%(新基准利率1倍)"
                     }
                   </DatePicker>
                 </Form.Item>
                 <Form.Item name="sdje" label="商贷金额" extra={"万"}>
-                  <Input onChange={console.log} placeholder="0" />
+                  <Input
+                    style={{ fontSize: "0.5rem" }}
+                    onChange={console.log}
+                    placeholder="0"
+                  />
                 </Form.Item>
                 <Form.Item
                   name="sdnx"
@@ -211,9 +225,7 @@ export default function home() {
                 >
                   <DatePicker>
                     {(value) =>
-                      value
-                        ? dayjs(value).format("YYYY-MM-DD")
-                        : "3.25%（最新基准利率1倍）"
+                      value ? dayjs(value).format("YYYY-MM-DD") : "30年"
                     }
                   </DatePicker>
                 </Form.Item>
@@ -256,9 +268,7 @@ export default function home() {
                 >
                   <DatePicker>
                     {(value) =>
-                      value
-                        ? dayjs(value).format("YYYY-MM-DD")
-                        : "3.25%（最新基准利率1倍）"
+                      value ? dayjs(value).format("YYYY-MM-DD") : "30年"
                     }
                   </DatePicker>
                 </Form.Item>
@@ -317,7 +327,7 @@ export default function home() {
                     {(value) =>
                       value
                         ? dayjs(value).format("YYYY-MM-DD")
-                        : "3.25%（最新基准利率1倍）"
+                        : "3.25%(新基准利率1倍)"
                     }
                   </DatePicker>
                 </Form.Item>
@@ -326,7 +336,13 @@ export default function home() {
           </Tabs>
         </section>
       </main>
-      <Button block type="submit" color="primary" size="large">
+      <Button
+        block
+        style={{ position: "fixed", bottom: "0" }}
+        type="submit"
+        color="primary"
+        size="large"
+      >
         开始计算
       </Button>
     </div>

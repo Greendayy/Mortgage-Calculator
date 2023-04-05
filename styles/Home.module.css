@@ -1,4 +1,5 @@
 
+
 .historyCardHeader{
     background: #23c993;
     color:white;
@@ -27,4 +28,31 @@
     border-radius: 0.1rem!important;
     padding: 0.3rem 0.8rem!important;
     font-size: 0.3rem!important;
+}
+.historyFormTabTitle{
+    font-weight: 500!important;
+    font-size: 0.67rem!important;
+    color:black!important;
+    opacity: 1!important;
+   margin-left: 0.3rem;
+}
+.formTabTitle{
+    font-weight: 500!important;
+    font-size: 0.67rem!important;
+    color:black!important;
+    opacity: 1!important;
+   margin-left: 0.4rem;
+}
+/* .adm-tabs-tab::disabled{
+  opacity: none!important;  
+ 
+}
+.adm-tabs-tab{
+    font-weight: 500!important;
+    font-size: 0.67rem!important;
+    color:black!important;
+    opacity: 1!important;
+} */
+.adm-tabs-content{
+    padding-top: 0!important;
 }

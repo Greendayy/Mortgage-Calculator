@@ -8,6 +8,8 @@ import {
   Form,
   Input,
   Picker,
+  PickerRef,
+  Space,
   Stepper,
   Switch,
   Tabs,
@@ -16,8 +18,26 @@ import {
 import { RightOutline } from "antd-mobile-icons";
 import { PickerDate } from "antd-mobile/es/components/date-picker/util";
 import Link from "next/link";
+import { RefObject, useState } from "react";
+import {
+  providentFundPeriodOptions,
+  providentFundInterestRateOptions,
+  businessLoanTermOptions,
+  interestRateMethodOptions,
+} from "../db/pickerData";
 
 export default function home() {
+  const [providentFundPeriodOptionsValue, providentFundPeriodOptionsSetValue] =
+    useState<(string | null)[]>([]);
+  const [
+    providentFundInterestRateOptionsValue,
+    providentFundInterestRateOptionsSetValue,
+  ] = useState<(string | null)[]>([]);
+  const [businessLoanTermOptionsValue, businessLoanTermOptionsSetValue] =
+    useState<(string | null)[]>([]);
+  const [interestRateMethodOptionsValue, interestRateMethodOptionsSetValue] =
+    useState<(string | null)[]>([]);
+
   return (
     <div>
       <header>
@@ -182,15 +202,31 @@ export default function home() {
                   name="gjjnx"
                   label="公积金年限"
                   trigger="onConfirm"
-                  onClick={(e, datePickerRef: RefObject<DatePickerRef>) => {
-                    datePickerRef.current?.open();
+                  onClick={(e, pickerRef: RefObject<PickerRef>) => {
+                    pickerRef.current?.open();
                   }}
                 >
-                  <DatePicker>
-                    {(value) =>
-                      value ? dayjs(value).format("YYYY-MM-DD") : "30年"
-                    }
-                  </DatePicker>
+                  <Picker
+                    columns={providentFundPeriodOptions}
+                    value={providentFundPeriodOptionsValue}
+                    onConfirm={providentFundPeriodOptionsSetValue}
+                    onSelect={(val, extend) => {
+                      console.log("onSelect", val, extend.items);
+                    }}
+                  >
+                    {(items, {}) => {
+                      return (
+                        <Space align="center">
+                          {/* <Button onClick={open}>选择</Button> */}
+                          {items.every((item) => item === null)
+                            ? "30年"
+                            : items
+                                .map((item) => item?.label ?? "未选择")
+                                .join(" - ")}
+                        </Space>
+                      );
+                    }}
+                  </Picker>
                 </Form.Item>
                 <Form.Item
                   name="gjjll"
@@ -200,13 +236,30 @@ export default function home() {
                     datePickerRef.current?.open();
                   }}
                 >
-                  <DatePicker>
-                    {(value) =>
-                      value
-                        ? dayjs(value).format("YYYY-MM-DD")
-                        : "3.25%(新基准利率1倍)"
-                    }
-                  </DatePicker>
+                  <Picker
+                    columns={providentFundInterestRateOptions}
+                    value={providentFundInterestRateOptionsValue}
+                    onConfirm={providentFundInterestRateOptionsSetValue}
+                    onSelect={(val, extend) => {
+                      console.log("onSelect", val, extend.items);
+                    }}
+                  >
+                    {(items, {}) => {
+                      return (
+                        <Space align="center">
+                          {/* <Button onClick={open}>选择</Button> */}
+                          {items.every((item) => item === null)
+                            ? "3.25%(新基准利率1倍)"
+                            : items
+                                .map(
+                                  (item) =>
+                                    item?.label ?? "3.25%(新基准利率1倍)"
+                                )
+                                .join(" - ")}
+                        </Space>
+                      );
+                    }}
+                  </Picker>
                 </Form.Item>
                 <Form.Item name="sdje" label="商贷金额" extra={"万"}>
                   <Input
@@ -223,11 +276,27 @@ export default function home() {
                     datePickerRef.current?.open();
                   }}
                 >
-                  <DatePicker>
-                    {(value) =>
-                      value ? dayjs(value).format("YYYY-MM-DD") : "30年"
-                    }
-                  </DatePicker>
+                  <Picker
+                    columns={businessLoanTermOptions}
+                    value={businessLoanTermOptionsValue}
+                    onConfirm={businessLoanTermOptionsSetValue}
+                    onSelect={(val, extend) => {
+                      console.log("onSelect", val, extend.items);
+                    }}
+                  >
+                    {(items, {}) => {
+                      return (
+                        <Space align="center">
+                          {/* <Button onClick={open}>选择</Button> */}
+                          {items.every((item) => item === null)
+                            ? "30年"
+                            : items
+                                .map((item) => item?.label ?? "30年")
+                                .join(" - ")}
+                        </Space>
+                      );
+                    }}
+                  </Picker>
                 </Form.Item>
                 <Form.Item
                   name="llfs"
@@ -237,13 +306,26 @@ export default function home() {
                     datePickerRef.current?.open();
                   }}
                 >
-                  <DatePicker>
-                    {(value) =>
-                      value
-                        ? dayjs(value).format("YYYY-MM-DD")
-                        : "3.25%使用最新LPR"
-                    }
-                  </DatePicker>
+                  <Picker
+                    columns={interestRateMethodOptions}
+                    value={interestRateMethodOptionsValue}
+                    onConfirm={interestRateMethodOptionsSetValue}
+                    onSelect={(val, extend) => {
+                      console.log("onSelect", val, extend.items);
+                    }}
+                  >
+                    {(items, {}) => {
+                      return (
+                        <Space align="center">
+                          {items.every((item) => item === null)
+                            ? "使用最新LPR"
+                            : items
+                                .map((item) => item?.label ?? "使用最新LPR")
+                                .join(" - ")}
+                        </Space>
+                      );
+                    }}
+                  </Picker>
                 </Form.Item>
                 <Form.Item name="lpr" label="LPR" extra={"%"}>
                   <Input onChange={console.log} placeholder="4.65" />
@@ -266,11 +348,27 @@ export default function home() {
                     datePickerRef.current?.open();
                   }}
                 >
-                  <DatePicker>
-                    {(value) =>
-                      value ? dayjs(value).format("YYYY-MM-DD") : "30年"
-                    }
-                  </DatePicker>
+                  <Picker
+                    columns={businessLoanTermOptions}
+                    value={businessLoanTermOptionsValue}
+                    onConfirm={businessLoanTermOptionsSetValue}
+                    onSelect={(val, extend) => {
+                      console.log("onSelect", val, extend.items);
+                    }}
+                  >
+                    {(items, {}) => {
+                      return (
+                        <Space align="center">
+                          {/* <Button onClick={open}>选择</Button> */}
+                          {items.every((item) => item === null)
+                            ? "30年"
+                            : items
+                                .map((item) => item?.label ?? "30年")
+                                .join(" - ")}
+                        </Space>
+                      );
+                    }}
+                  </Picker>
                 </Form.Item>
                 <Form.Item
                   name="llfs"
@@ -280,13 +378,26 @@ export default function home() {
                     datePickerRef.current?.open();
                   }}
                 >
-                  <DatePicker>
-                    {(value) =>
-                      value
-                        ? dayjs(value).format("YYYY-MM-DD")
-                        : "3.25%使用最新LPR"
-                    }
-                  </DatePicker>
+                  <Picker
+                    columns={interestRateMethodOptions}
+                    value={interestRateMethodOptionsValue}
+                    onConfirm={interestRateMethodOptionsSetValue}
+                    onSelect={(val, extend) => {
+                      console.log("onSelect", val, extend.items);
+                    }}
+                  >
+                    {(items, {}) => {
+                      return (
+                        <Space align="center">
+                          {items.every((item) => item === null)
+                            ? "使用最新LPR"
+                            : items
+                                .map((item) => item?.label ?? "使用最新LPR")
+                                .join(" - ")}
+                        </Space>
+                      );
+                    }}
+                  </Picker>
                 </Form.Item>
                 <Form.Item name="lpr" label="LPR" extra={"%"}>
                   <Input onChange={console.log} placeholder="4.65" />
@@ -305,15 +416,30 @@ export default function home() {
                   name="gjjnx"
                   label="公积金年限"
                   trigger="onConfirm"
-                  onClick={(e, datePickerRef: RefObject<DatePickerRef>) => {
-                    datePickerRef.current?.open();
+                  onClick={(e, pickerRef: RefObject<PickerRef>) => {
+                    pickerRef.current?.open();
                   }}
                 >
-                  <DatePicker>
-                    {(value) =>
-                      value ? dayjs(value).format("YYYY-MM-DD") : "30年"
-                    }
-                  </DatePicker>
+                  <Picker
+                    columns={providentFundPeriodOptions}
+                    value={providentFundPeriodOptionsValue}
+                    onConfirm={providentFundPeriodOptionsSetValue}
+                    onSelect={(val, extend) => {
+                      console.log("onSelect", val, extend.items);
+                    }}
+                  >
+                    {(items, {}) => {
+                      return (
+                        <Space align="center">
+                          {items.every((item) => item === null)
+                            ? "30年"
+                            : items
+                                .map((item) => item?.label ?? "未选择")
+                                .join(" - ")}
+                        </Space>
+                      );
+                    }}
+                  </Picker>
                 </Form.Item>
                 <Form.Item
                   name="gjjll"
@@ -323,13 +449,30 @@ export default function home() {
                     datePickerRef.current?.open();
                   }}
                 >
-                  <DatePicker>
-                    {(value) =>
-                      value
-                        ? dayjs(value).format("YYYY-MM-DD")
-                        : "3.25%(新基准利率1倍)"
-                    }
-                  </DatePicker>
+                  <Picker
+                    columns={providentFundInterestRateOptions}
+                    value={providentFundInterestRateOptionsValue}
+                    onConfirm={providentFundInterestRateOptionsSetValue}
+                    onSelect={(val, extend) => {
+                      console.log("onSelect", val, extend.items);
+                    }}
+                  >
+                    {(items, {}) => {
+                      return (
+                        <Space align="center">
+                          {/* <Button onClick={open}>选择</Button> */}
+                          {items.every((item) => item === null)
+                            ? "3.25%(新基准利率1倍)"
+                            : items
+                                .map(
+                                  (item) =>
+                                    item?.label ?? "3.25%(新基准利率1倍)"
+                                )
+                                .join(" - ")}
+                        </Space>
+                      );
+                    }}
+                  </Picker>
                 </Form.Item>
               </Form>
             </Tabs.Tab>

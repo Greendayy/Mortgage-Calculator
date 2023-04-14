@@ -142,12 +142,12 @@ export default function home() {
             />
 
             <Tabs.Tab title="按贷款总额" key="adkze">
-              <Form layout="horizontal">
+              <Form layout="horizontal" requiredMarkStyle="none">
                 <Form.Item
                   name="dkje"
                   label="贷款金额"
                   extra={"万"}
-                  // rules={[{ required: true, message: "姓名不能为空" }]}
+                  rules={[{ required: true }]}
                 >
                   <Input onChange={console.log} placeholder="0" />
                 </Form.Item>
@@ -327,10 +327,32 @@ export default function home() {
                     }}
                   </Picker>
                 </Form.Item>
-                <Form.Item name="lpr" label="LPR" extra={"%"}>
+                <Form.Item
+                  name="lpr"
+                  label="LPR"
+                  help={
+                    <>
+                      <h6>LPR(贷款市场报价利率) </h6>
+                      <p>
+                        自2019年10月起，商贷利率开始改用LPR
+                        (贷款市场报价利率)计算。LPR基准利率每月更新一次，实际贷款利率在LPR的基础上进行一定的浮动。
+                      </p>
+                    </>
+                  }
+                  extra={"%"}
+                >
                   <Input onChange={console.log} placeholder="4.65" />
                 </Form.Item>
-                <Form.Item name="jd" label="基点" extra={"BP(‱)"}>
+                <Form.Item
+                  name="jd"
+                  label="基点"
+                  extra={"BP(‱)"}
+                  help={
+                    <p>
+                      1个基点=0.01%，如果浮动10个基点，相当于在LPR的基础上增加0.1%为实际贷款利率
+                    </p>
+                  }
+                >
                   <Input onChange={console.log} placeholder="0" />
                 </Form.Item>
                 <Form.Item name="sdll" label="商贷利率" extra={"4.65%"}>
@@ -399,10 +421,32 @@ export default function home() {
                     }}
                   </Picker>
                 </Form.Item>
-                <Form.Item name="lpr" label="LPR" extra={"%"}>
+                <Form.Item
+                  name="lpr"
+                  label="LPR"
+                  extra={"%"}
+                  help={
+                    <>
+                      <h6>LPR(贷款市场报价利率) </h6>
+                      <p>
+                        自2019年10月起，商贷利率开始改用LPR
+                        (贷款市场报价利率)计算。LPR基准利率每月更新一次，实际贷款利率在LPR的基础上进行一定的浮动。
+                      </p>
+                    </>
+                  }
+                >
                   <Input onChange={console.log} placeholder="4.65" />
                 </Form.Item>
-                <Form.Item name="jd" label="基点" extra={"BP(‱)"}>
+                <Form.Item
+                  name="jd"
+                  label="基点"
+                  extra={"BP(‱)"}
+                  help={
+                    <p>
+                      1个基点=0.01%，如果浮动10个基点，相当于在LPR的基础上增加0.1%为实际贷款利率
+                    </p>
+                  }
+                >
                   <Input onChange={console.log} placeholder="0" />
                 </Form.Item>
                 <Form.Item name="sdll" label="商贷利率" extra={"4.65%"}>

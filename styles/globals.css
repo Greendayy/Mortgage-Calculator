@@ -7,9 +7,9 @@
   --adm-color-selected: #1fb081;
   --adm-color-grey: #979b9e;
   --adm-font-family: -apple-system-font,Helvetica Neue,sans-serif;
-  --active-line-color:#1fb081!important;
-  --active-title-color:#1fb081!important;
+
   --title-font-size:0.1rem;
+  
 }
 
 
@@ -30,3 +30,17 @@ body{
     font-size: 16px;
   }
 } */
+.adm-form-item-label{
+  display: flex!important;
+  align-items: center;
+}
+
+.adm-tabs-tab-disabled{
+  opacity: 1!important;
+  font-size: 0.6rem!important;
+ 
+}
+.adm-tabs-tab{
+    font-weight: 500!important;
+    font-size: 0.2rem;
+}

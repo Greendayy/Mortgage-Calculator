@@ -43,16 +43,11 @@
     opacity: 1!important;
    margin-left: 0.4rem;
 }
-/* .adm-tabs-tab::disabled{
-  opacity: none!important;  
- 
-}
-.adm-tabs-tab{
-    font-weight: 500!important;
-    font-size: 0.67rem!important;
-    color:black!important;
-    opacity: 1!important;
-} */
+
 .adm-tabs-content{
     padding-top: 0!important;
+}
+
+.adm-form-item-label{
+    display: flex!important;
 }
